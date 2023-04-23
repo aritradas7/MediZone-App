@@ -3,25 +3,44 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var userModel = require('./userModel');
 const utils = require('./utils');
+var mrs = require('./mrs')
+var prodModel = require('./productModel')
 
 router.get('/', (req, res) => {
-    mrs.find((err, docs) => {
-        if (!err) { res.send(docs); } else { console.log('Error in Retriving user :' + JSON.stringify(err, undefined, 2)); }
+    userModel.find({}, function(err, item) {
+        const result = {}
+
+        result['status'] = 'success'
+        result['data'] = item
+        res.send(result)
+
     });
-});
+    console.log("test");
+})
 
 router.get('/:id', (req, res) => {
-    if (!isObjectIdOrHexString.isValid(req.params.id))
-        return res.status(404).send(`No record with given id : ${req.params.id}`);
-    mrs.findById(req.params.id, (err, docs) => {
-        if (!err) { res.send(doc); } else { console.log('Error in Retriving user :' + JSON.stringify(err, undefined, 2)); }
+    console.log(req.params.id)
+    var categ = 0
+
+    if (req.params.id == "allopathic") {
+        categ = 1
+    } else if (req.params.id == "homoeopathy") {
+        categ = 2
+    } else if (req.params.id == "ayurvedic") {
+        categ = 3
+    }
+
+    prodModel.find({ categoryid: categ }, function(err, item) {
+        const result = {}
+        console.log(item)
+        res.send(utils.createResult(err, item))
     });
 });
 
 router.post('/', (request, response) => {
     const { email, password } = request.body
     console.log("search start..");
-    userModel.find({email:email, password:password}, function(err, item) {
+    userModel.find({ email: email, password: password }, function(err, item) {
         const result = {}
         if (item.length != 0) {
             result['status'] = 'success'
