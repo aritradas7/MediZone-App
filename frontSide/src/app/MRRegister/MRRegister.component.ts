@@ -52,7 +52,7 @@ export class MRRegisterComponent implements OnInit {
             this.phoneno,this.email,this.password).subscribe((response)=>{
                 if(response['status']=='success')
                 {
-                    alert('you have successfully register')
+                    alert('You have successfully registered')
                     this.router.navigate(['/MRlogin'])
                 }
                 else

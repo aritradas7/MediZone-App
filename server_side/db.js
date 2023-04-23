@@ -17,7 +17,7 @@
 //     connect1: connect1
 // }
 
-
+console.log("DB Connecting..");
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 

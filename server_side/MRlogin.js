@@ -1,9 +1,8 @@
-const db = require('./db')
-const utils = require('./utils')
-const express = require('express')
-const cryptoJs = require('crypto-js')
-
-const router = express.Router()
+var express = require('express');
+var router = express.Router();
+var mongoose = require('mongoose');
+var userModel = require('./userModel');
+const utils = require('./utils');
 
 router.get('/', (req, res) => {
     mrs.find((err, docs) => {
@@ -19,57 +18,22 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
-    var mrs = new MRS({
-        username: req.body.name,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        phoneno: req.body.phoneno,
-        email: req.body.email,
-        password: req.body.password,
+router.post('/', (request, response) => {
+    const { email, password } = request.body
+    console.log("search start..");
+    userModel.find({email:email, password:password}, function(err, item) {
+        const result = {}
+        if (item.length != 0) {
+            result['status'] = 'success'
+            result['data'] = item
+            response.send(result)
+        } else {
+            result['status'] = 'error'
+            result['error'] = err
+            response.send(result)
+        }
     });
-    mrs.save((err, doc) => {
-        if (!err) { res.send(doc); } else { console.log('Error in user Save :', +JSON.stringify(err, undefined, 2)); }
-    });
-});
-
-router.put('/:id', (req, res) => {
-    if (!objectId.isValid(req.params.id))
-        return res.status(404).send(`No record with given id : ${req.params.id}`);
-
-    var mrs = {
-        username: req.body.name,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        phoneno: req.body.phoneno,
-        email: req.body.email,
-        password: req.body.password,
-    };
-    users.findByIdAndUpdate(req.params.id, { $set: emp }, { new: true }, (err, doc) => {
-        if (!err) { res.send(doc); } else { console.log('Error in user Update :' + JSON.stringify(err, undefined, 2)); }
-    });
-});
-
-
-
-// router.post('/', (request, response) => {
-//     const { email, password } = request.body
-//     const connection = db.mongoose()
-//     const statement = `
-//     select * from mrs where email='${email}' and password = '${password}'`
-//     connection.query(statement, (error, data) => {
-//         const result = {}
-//         if (data.length != 0) {
-//             result['status'] = 'success'
-//             result['data'] = data
-//             response.send(result)
-//         } else {
-//             result['status'] = 'error'
-//             result['error'] = error
-//             response.send(result)
-//         }
-
-//     })
-// })
+    console.log("test");
+})
 
 module.exports = router

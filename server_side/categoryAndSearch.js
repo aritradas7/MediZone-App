@@ -10,7 +10,7 @@ const upload = multer({dest: 'images'})
 
 router.get('/allopathic', (request, response) => {
     const connection = db.connect1()
-    const statement = `select * from products where categoryId = 3`
+    const statement = `select * from products where categoryId = 1`
     connection.query(statement, (error, data) => {
         connection.end()
         response.send(utils.createResult(error, data))
@@ -20,7 +20,7 @@ router.get('/allopathic', (request, response) => {
 
 router.get('/homoeopathy', (request, response) => {
     const connection = db.connect1()
-    const statement = `select * from products where categoryId = 4`
+    const statement = `select * from products where categoryId = 2`
     connection.query(statement, (error, data) => {
         connection.end()
         response.send(utils.createResult(error, data))
@@ -30,7 +30,7 @@ router.get('/homoeopathy', (request, response) => {
 
 router.get('/ayurvedic', (request, response) => {
     const connection = db.connect1()
-    const statement = `select * from products where categoryId = 5`
+    const statement = `select * from products where categoryId = 3`
     connection.query(statement, (error, data) => {
         connection.end()
         response.send(utils.createResult(error, data))
