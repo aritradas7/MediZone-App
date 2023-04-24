@@ -17,7 +17,7 @@ export class AyurvedicComponent implements OnInit {
 
     constructor(private router:Router,
         private productservice:AyurvedicService,
-        private service:AyurvedicService) { 
+        private service:AyurvedicService) {
        this.loadflag()
       this.loadAllProducts()
     }
@@ -44,12 +44,12 @@ export class AyurvedicComponent implements OnInit {
             localStorage['flag']='1'
         }
     }
-    ngOnInit() { 
-    
+    ngOnInit() {
+
     }
 
 
-  OnSelectProduct(id: number) {
+  OnSelectProduct(id: string) {
     this.router.navigate(['/MRlogin/product_details/'+id])
   }
 

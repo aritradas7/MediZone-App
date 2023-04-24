@@ -10,42 +10,42 @@ import { UserOrdersService } from './UserOrders.component.service';
 })
 
 export class UserOrdersComponent implements OnInit {
-    fullname = ''
+    drname = ''
     phoneno =''
-    OrderDate: String = ''
-    deliveryDate:String = ''
+    OrderDate = ''
+    deliveryDate = ''
     PaymentMode = 1
     state = ''
     city = ''
     pincode: String = ''
     address = ''
-   
-    
+
+
 
     constructor(private router: Router,
         private service: UserOrdersService,
         private service1: UserOrdersService,
-        private service2 :UserOrdersService ) { 
-    
+        private service2 :UserOrdersService ) {
+
         }
 
-        
+
     onadd()
     {
         const phoneno1:String = String(this.phoneno)
         const pincode1:String = String(this.pincode)
-        if(this.fullname.length == 0){
-            alert('fullname can not be empty')
+        if(this.drname.length == 0){
+            alert('Doctor Name can not be empty')
         }
         else if(phoneno1.length == 0 || phoneno1.length != 10){
             alert('phone no is empty or not a 10 digits')
         }
-        else if(this.OrderDate.length == 0){
-            alert('OrderDate is invaild')
-        }
-        else if(this.deliveryDate.length == 0){
-            alert('DeliveryDate is invaild')
-        }
+        // else if(this.OrderDate.length == 0){
+        //     alert('OrderDate is invaild')
+        // }
+        // else if(this.deliveryDate.length == 0){
+        //     alert('DeliveryDate is invaild')
+        // }
         else if(this.state.length == 0){
             alert('state can not be empty')
         }
@@ -59,56 +59,35 @@ export class UserOrdersComponent implements OnInit {
             alert('Adress can not be empty')
         }
         else{
-        
-           
             if(confirm('Are you sure ? Once Ordered can not be canceled' ))
-            {   
-                    const mrid = localStorage['id']
+            {
+              const userid = localStorage['id']
 
-                    const addressOFdr = this.address +', ' + this.city +', ' + this.state +', ' + this.pincode
-                    const drname = this.fullname
-                    const drphoneno = this.phoneno
+              const address = this.address +', ' + this.city +', ' + this.state +', ' + this.pincode
+              const drname = this.drname
+              const drphoneno = this.phoneno
 
-                    this.service1.InsertLocation(this.fullname,this.phoneno,this.state,this.city,this.pincode,this.address,mrid)
-                    .subscribe((response1) =>{
-                        if(response1['status'] == 'success'){
-                            console.log('')
-                        }
-                        else{
-                            console.log(response1['error'])
-                        }
-                    })
+              this.OrderDate = Date()
+              this.deliveryDate = this.OrderDate + 3
+              var totalAmount
+              var totalDiscount
 
-                   
-
-
-                    // //to get id of locationofdr table;
-                    // this.service2.getFullAddress().subscribe.((response2) =>{
-                    //     if(response2['status'] == 'success'){
-                    //         this.locationofdr = response2['data']
-                    //         console.log(this.locationofdr)
-                    //     }else{
-                    //         console.log(response2['error'])
-                    //     }
-                    // })
-
-
-                    this.service.UpdateOrders(this.OrderDate,this.deliveryDate,this.PaymentMode,mrid,drname,addressOFdr,drphoneno)
-                    .subscribe((response)=>{
-                            if(response['status']=='success')
-                            {
-                                alert('success')
-                                this.router.navigate(['/MRlogin/cart'])
-                            }
-                            else
-                            {
-                                console.log(response['error'])
-                                alert('error')
-                            }
-                        })
+              this.service.UpdateOrders(this.OrderDate,this.deliveryDate,this.PaymentMode,userid,drname,address,drphoneno,totalAmount,totalDiscount)
+              .subscribe((response)=>{
+                  if(response['status']=='success')
+                  {
+                      alert('success')
+                      this.router.navigate(['/MRlogin/cart'])
+                  }
+                  else
+                  {
+                      console.log(response['error'])
+                      alert('error')
+                  }
+              })
             }
         }
-       
+
     }
 
     ngOnInit() { }

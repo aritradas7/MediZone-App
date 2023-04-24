@@ -10,7 +10,7 @@ export class CartProductDetailsService {
     url2 = 'http://localhost:4000/MRlogin/cartDelete'
 
     constructor(private httpClient: HttpClient) { }
-    
+
 
     getProduct(id: number)
     {

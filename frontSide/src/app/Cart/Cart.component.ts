@@ -17,12 +17,12 @@ export class CartComponent implements OnInit {
     msg:String
     id = localStorage['id']
     empty: boolean
-    
+
     constructor(private service:CartService,
         private activateRoute:ActivatedRoute,
         private route:Router) {
-      
-         
+
+
         this.loadProduct()
 
      }
@@ -32,9 +32,9 @@ export class CartComponent implements OnInit {
         this.service.getCart(this.id).subscribe(response =>{
             if(response['status'] == 'success'){
                 this.Cart = response['data']
-               
+
                 //TO GET TOTAL MONEY AND SAVING
-                
+
                 if(this.Cart.length == 0){
                     this.msg = 'your cart is empty'
                     this.empty = true
@@ -45,10 +45,10 @@ export class CartComponent implements OnInit {
                 }
                 for(let i = 0;i < this.Cart.length;i++)
                 {
-                    this.TotalAmountOfProduct = this.TotalAmountOfProduct + this.Cart[i].totalAmount
-                    this.TotalSaved = this.TotalSaved + this.Cart[i].totalDiscount
-                   
-                } 
+                    this.TotalAmountOfProduct = this.TotalAmountOfProduct + parseFloat(this.Cart[i].totalAmount)
+                    this.TotalSaved = this.TotalSaved + parseFloat(this.Cart[i].totalDiscount)
+
+                }
 
 
             }
@@ -57,7 +57,7 @@ export class CartComponent implements OnInit {
             }
         })
     }
-    
+
     onEdit(id:number,tableid:number,quantity:number) {
         localStorage['orderDetailsTableID'] = tableid
         localStorage['Quantity'] = quantity
@@ -65,10 +65,10 @@ export class CartComponent implements OnInit {
       }
 
     onOrderPlace(){
-            this.route.navigate(['/MRlogin/cart/placeorder'])   
+            this.route.navigate(['/MRlogin/cart/placeorder'])
     }
 
-    ngOnInit() { 
+    ngOnInit() {
 
         if(localStorage['login_status'] != '1'){
             alert('you are not logged in')
@@ -76,6 +76,6 @@ export class CartComponent implements OnInit {
         }
     }
 
-    
+
 }
 

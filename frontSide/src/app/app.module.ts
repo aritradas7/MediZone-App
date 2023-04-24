@@ -53,6 +53,8 @@ import { AllOrderListComponent } from './AllOrderList/AllOrderList.component';
 import { MROrderListComponent } from './MRorders/MRorders.component';
 import { MRordersListService } from './MRorders/MRorders.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ConsultDoctorComponent } from './consult-doctor/consult-doctor.component';
 
 
 
@@ -93,8 +95,9 @@ const routes: Route[] = [
   { path: 'MRlogin/cart/placeorder', component: UserOrdersComponent },
   { path: 'MRlogin/orders', component: UserOrderListComponent },
   { path: 'MRlogin/dashboard/orders', component: AllOrderListComponent },
-  { path: 'MRlogin/dashboard/MRorders/:id', component: MROrderListComponent }
-
+  { path: 'MRlogin/dashboard/MRorders/:id', component: MROrderListComponent },
+  { path: 'MRlogin/user-profile', component: UserProfileComponent },
+  { path: 'MRlogin/contact_us', component: ContactUsComponent}
 
 ]
 
@@ -126,7 +129,9 @@ const routes: Route[] = [
     UserOrderListComponent,
     AllOrderListComponent,
     MROrderListComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ContactUsComponent,
+    ConsultDoctorComponent
 
   ],
   imports: [

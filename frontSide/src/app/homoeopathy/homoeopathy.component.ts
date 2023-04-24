@@ -16,7 +16,7 @@ export class HomoeopathyComponent implements OnInit {
 
     constructor(private router:Router,
         private productservice:HomoeopathyService,
-        private service:HomoeopathyService) { 
+        private service:HomoeopathyService) {
         this.loadflag()
         this.loadAllProducts()
     }
@@ -43,12 +43,12 @@ export class HomoeopathyComponent implements OnInit {
             localStorage['flag']='1'
         }
     }
-    ngOnInit() { 
-    
+    ngOnInit() {
+
     }
 
 
-  OnSelectProduct(id: number) {
+  OnSelectProduct(id: string) {
     this.router.navigate(['/MRlogin/product_details/'+id])
   }
 
