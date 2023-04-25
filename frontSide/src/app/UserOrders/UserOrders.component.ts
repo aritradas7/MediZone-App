@@ -81,6 +81,8 @@ export class UserOrdersComponent implements OnInit {
                       alert('success')
                       localStorage['TotalAmount'] = 0
                       localStorage['TotalDiscount'] = 0
+                      localStorage['Quantity'] = 0
+                      this.service.clearCart(userid).subscribe()
                       this.router.navigate(['/MRlogin/cart'])
                   }
                   else
@@ -93,6 +95,7 @@ export class UserOrdersComponent implements OnInit {
         }
 
     }
+
     onSelectImage(event)
      {
         var img = event.target.files[0]

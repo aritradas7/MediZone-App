@@ -64,8 +64,15 @@ export class CartComponent implements OnInit {
         this.route.navigate(['/MRlogin/cartEdit/'+id])
     }
 
-    onDelete(id:string) {
-        this.route.navigate(['/MRlogin/cartDelete/'+id])
+    onDelete(productId:string) {
+        this.service.deleteCart(productId).subscribe(response =>{
+            if(response['status'] == 'success'){
+                this.loadProduct()
+            }
+            else{
+                console.log(response['error'])
+            }
+        })
     }
 
     onOrderPlace(){

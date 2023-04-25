@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserOrdersService {
     http: HttpClient
     url1 = 'http://localhost:4000/MRlogin/cart/confirmorder'   //express port 4000
+    url2='http://localhost:4000/MRlogin/clearCart'
 
 
 
@@ -16,7 +17,12 @@ export class UserOrdersService {
         console.log(this.url1);
      }
 
-
+     clearCart(userid:string){
+        const body = {
+            mrid:userid
+        }
+        return this.http.post(this.url2, body)
+     }
     UpdateOrders(
         OrderDate:String,
         deliveryDate:String,

@@ -63,15 +63,25 @@ router.put('/cartEdit', (request, response) => {
 
 
 // to delete an item of cart
-router.put('/cartDelete', (request, response) => {
-    console.log('here deleting')
-    const { id } = request.body
-    const connection = db.connect1()
-    const statement = `delete from orderdetails where id = ${id}`
-    connection.query(statement, (error, data) => {
-        connection.end()
-        response.send(utils.createResult(error, data))
-    })
+router.post('/cartDelete', (request, response) => {
+    const { mrid, productId } = request.body
+    CartModel.deleteMany(
+        { productID:productId, MRid:mrid }, 
+        function(err, res) {
+            response.send(utils.createResult(err, res))
+        }
+    );
+})
+
+// to clear cart
+router.post('/clearCart', (request, response) => {
+    const { mrid } = request.body
+    CartModel.deleteMany(
+        { MRid:mrid }, 
+        function(err, res) {
+            response.send(utils.createResult(err, res))
+        }
+    );
 })
 
 // to update orderlist (called when user is confired to order)
