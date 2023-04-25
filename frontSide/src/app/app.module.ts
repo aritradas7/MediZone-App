@@ -58,6 +58,7 @@ import { ConsultDoctorComponent } from './consult-doctor/consult-doctor.componen
 import { AddConsultationService } from './consult-doctor/consult-doctor.service';
 import { ContactUsService } from './contact-us/contact-us.service';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { SingleUserService } from './user-profile/user.service'
 
 
 
@@ -171,7 +172,8 @@ const routes: Route[] = [
     AllOrderListService,
     MRordersListService,
     AddConsultationService,
-    ContactUsService
+    ContactUsService,
+    SingleUserService
 
   ],
   bootstrap: [AppComponent]

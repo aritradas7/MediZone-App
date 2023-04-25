@@ -8,6 +8,19 @@ const utils = require('./utils');
 /* GET home page. */
 router.get('/', function(req, res, next) {
     userModel.find({}, function(err, item) {
+        console.log('usermodel')
+        const result = {}
+        console.log(item)
+        res.send(utils.createResult(err, item))
+    });
+});
+
+router.put('/', (req, res) => {
+    const { userid } = req.body
+
+    userModel.find({_id:userid}, function(err, item) {
+        
+        console.log('usermodelsingle')
         const result = {}
         console.log(item)
         res.send(utils.createResult(err, item))
