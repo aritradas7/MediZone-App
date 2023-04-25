@@ -7,7 +7,11 @@ const utils = require('./utils');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'add user' });
+    userModel.find({}, function(err, item) {
+        const result = {}
+        console.log(item)
+        res.send(utils.createResult(err, item))
+    });
 });
 
 router.post('/', (request, response) => {

@@ -165,15 +165,11 @@ router.delete('/orders/:id', (request, response) => {
 
 //to get list of orders of All mrs
 router.get('/dashboard/orders', (request, response) => {
-    const connection = db.connect1()
-    const statement = `
-    select p.image,p.name, o.id,o.Quantity,o.totalDiscount,o.totalAmount,o.drname,o.drphoneno,o.PaymentMode,
-    o.OrderDate,o.deliveryDate,addressOFdr,o.MRid from orderdetails o inner join products p where o.ProductID = p.id and flag = 1 order by o.deliveryDate desc`
-
-    connection.query(statement, (error, data) => {
-        connection.end()
-        response.send(utils.createResult(error, data))
-    })
+    OrderModel.find({}, function(err, item) {
+        const result = {}
+        console.log(item)
+        response.send(utils.createResult(err, item))
+    });
 })
 
 

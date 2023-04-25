@@ -43,6 +43,12 @@ export class AllOrderListComponent  {
         }
       }
 
+      dashboard()
+    {
+        this.router.navigate(['/login/dashboard'])
+    }
+
+
   loadAllProducts() {
 
     this.date = new Date()
