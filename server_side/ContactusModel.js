@@ -8,6 +8,6 @@ var contactusSchema = new mongoose.Schema({
     message: String
 });
 
-var ContactusModel = mongoose.model('contactus', userSchema);
+var ContactusModel = mongoose.model('userqueries', contactusSchema);
 
-module.exports = mongoose.model("Contactus", userSchema);
+module.exports = mongoose.model("Userqueries", contactusSchema);

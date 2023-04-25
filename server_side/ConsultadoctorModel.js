@@ -11,6 +11,6 @@ var consultadoctorSchema = new mongoose.Schema({
     doctor: String
 });
 
-var ConsultadoctorModel = mongoose.model('consultadoc', userSchema);
+var ConsultadoctorModel = mongoose.model('consultrequest', consultadoctorSchema);
 
-module.exports = mongoose.model("Consultadoc", userSchema);
+module.exports = mongoose.model("ConsultRequest", consultadoctorSchema);

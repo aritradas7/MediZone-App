@@ -21,21 +21,35 @@
             <div class="right-side">
                 <div class="topic-text">Send us a message</div>
                 <p>If you have any work from me or any types of quries related to my tutorial, you can send me message from here. It's my pleasure to help you.</p>
-                <form action="#">
-                    <div class="input-box">
-                        <input type="text" placeholder="Enter your name">
+                <br>
+                <div class="row">
+                    <div class="form-group">
+                        <input [(ngModel)]="name" type="text" class="form-control" placeholder="Enter Your Name">
                     </div>
-                    <div class="input-box">
-                        <input type="text" placeholder="Enter your email">
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <input [(ngModel)]="email" type="text" class="form-control" placeholder="Enter your Email ID">
                     </div>
-                    <div class="input-box message-box">
-                        <input type="textarea" placeholder="Enter your message">
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <input [(ngModel)]="message" type="textarea" class="form-control" placeholder="Enter your query">
                     </div>
-                    <div class="button">
-                        <input type="button" value="Send Now">
-                    </div>
-                </form>
+                </div>
+
+                <div class="row">
+                    <button (click)="addQuery()" class="btn btn-success">Send Now</button>
+                </div>
             </div>
         </div>
     </div>
 </body>
+
+
+<br><br><br>
+
+<h1>Consult a Doctor</h1>
+

@@ -55,6 +55,8 @@ import { MRordersListService } from './MRorders/MRorders.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ConsultDoctorComponent } from './consult-doctor/consult-doctor.component';
+import { AddConsultationService } from './consult-doctor/consult-doctor.service';
+import { ContactUsService } from './contact-us/contact-us.service';
 
 
 
@@ -164,7 +166,9 @@ const routes: Route[] = [
     UserOrdersService,
     UserOrderListService,
     AllOrderListService,
-    MRordersListService
+    MRordersListService,
+    AddConsultationService,
+    ContactUsService
 
   ],
   bootstrap: [AppComponent]

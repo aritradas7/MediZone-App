@@ -8,6 +8,7 @@ const routerDrs = require('./drs')
 const routerMR = require('./MRlogin')
 const routeCategoryAndSearch = require('./categoryAndSearch')
 const routeCartAndOrders = require('./cartAndOrder')
+const routeContact = require('./contact')
 const app = express()
 
 
@@ -28,6 +29,7 @@ app.use('/login/dashboard/dr',routerDrs)
 app.use('/MRlogin',routerMR)
 app.use('/MRlogin',routeCategoryAndSearch)
 app.use('/MRlogin',routeCartAndOrders)
+app.use('/Contact',routeContact)
 app.use(express.static('images'))
 
 app.listen(4000, '0.0.0.0', () =>{
