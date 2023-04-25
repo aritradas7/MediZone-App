@@ -13,9 +13,9 @@ export class ProductDetailsComponent implements OnInit {
     count: number = 1
     rate: number
     temp: number
-    id: number
+    id: string
     totalDiscount: number
-    MRid:number
+    MRid:string
 
     constructor(private service:ProductDetailsService,
         private activateRoute:ActivatedRoute,
@@ -69,7 +69,7 @@ export class ProductDetailsComponent implements OnInit {
          {
              if(confirm('Do You want to add itmes'))
              {
-                this.MRid = localStorage['id']
+                this.MRid = localStorage['userid']
                 this.totalDiscount = (this.product.price * this.count) - this.rate
 
                 this.cartService.postInCart(this.count,this.rate,this.totalDiscount,this.MRid,this.id)

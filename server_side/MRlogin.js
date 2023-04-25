@@ -45,6 +45,8 @@ router.post('/', (request, response) => {
         if (item.length != 0) {
             result['status'] = 'success'
             result['data'] = item
+            console.log(item)
+            console.log('here')
             response.send(result)
         } else {
             result['status'] = 'error'

@@ -43,14 +43,10 @@ router.post('/cart', (request, response) => {
 
 // to show product in cart list
 router.post('/addcart', (request, response) => {
-    console.log("show product")
+    console.log("show cart")
     const { mrid } = request.body
-        // const connection = db.connect1()
-        // const statement = `select o.id,o.Quantity,o.totalAmount,o.totalDiscount,o.MRid,o.ProductID,o.flag, p.image,p.name from orderdetails o inner join products p where o.productID=p.id and o.flag = 0 and o.MRid = ${mrid}  `
-        // connection.query(statement, (error, data) => {
-        //     connection.end()
-        //     response.send(utils.createResult(error, data))
-        // })
+    
+
     CartModel.find({ MRid: mrid }, function(err, item) {
         const result = {}
         console.log(item)
@@ -89,8 +85,9 @@ router.post('/cartDelete', (request, response) => {
 router.put('/cart/confirmorder', (request, response) => {
     console.log("this called")
     const { OrderDate, deliveryDate, PaymentMode, userid, drname, address, drphoneno, totalAmount, totalDiscount } = request.body
-    var plist = CartModel.find({ MRid: userid });
-
+    
+    //var plist = CartModel.find({ MRid: userid });
+ 
     var order = new OrderModel({
         OrderDate: OrderDate,
         deliveryDate: deliveryDate,
@@ -108,18 +105,20 @@ router.put('/cart/confirmorder', (request, response) => {
         if (!err) {
             console.log('Cart added successfully!');
             oid = doc._id;
-            while (plist.hasNext()) {
-                var p = plist.next();
-
-                var orderDtls = new OrderDetailModel({
-                    OrderId: oid,
-                    productID: p.productID,
-                    Quantity: p.quantity,
-                    totalAmount: p.totalAmount,
-                    totalDiscount: p.totalDiscount
+            
+            CartModel.find({ MRid: userid }, function(err, item) {
+                
+                item.forEach (function f(x){
+                    var orderDtls = new OrderDetailModel({
+                        OrderId: oid,
+                        productID: x.productID,
+                        Quantity: x.quantity,
+                        totalAmount: x.totalAmount,
+                        totalDiscount: x.totalDiscount
+                    });
+                    orderDtls.save();
                 });
-                orderDtls.save();
-            }
+            });
             response.send(utils.createResult(err, doc))
         } else {
             console.log('Error during record insertion : ' + err);

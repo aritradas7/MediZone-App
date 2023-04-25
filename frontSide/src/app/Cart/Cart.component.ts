@@ -49,7 +49,8 @@ export class CartComponent implements OnInit {
                     this.TotalSaved = this.TotalSaved + parseFloat(this.Cart[i].totalDiscount)
 
                 }
-
+                localStorage['TotalAmount'] = this.TotalAmountOfProduct
+                localStorage['TotalDiscount'] = this.TotalSaved
 
             }
             else{

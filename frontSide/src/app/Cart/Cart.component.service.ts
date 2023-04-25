@@ -9,10 +9,10 @@ export class CartService {
 
     constructor(private httpClient: HttpClient) { }
     
-    getCart(mrid:number)
+    getCart(mrid:string)
     {      
         const body = {
-            mrid:mrid
+            mrid:localStorage['userid']
         }
         return this.httpClient.post(this.url,body)
     }

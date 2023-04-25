@@ -21,12 +21,13 @@ export class UserOrdersService {
         OrderDate:String,
         deliveryDate:String,
         PaymentMode: number,
-        mrid:number,
+        userid:string,
         drname:String,
         address:String,
         drphoneno:String,
         totalAmount:String,
-        totalDiscount:String
+        totalDiscount:String,
+        prescription:ImageBitmap
 
         )
 
@@ -36,12 +37,13 @@ export class UserOrdersService {
             OrderDate:OrderDate,
             deliveryDate:deliveryDate,
             PaymentMode:PaymentMode,
-            mrid:mrid,
+            userid:userid,
             drname:drname,
             address:address,
             drphoneno:drphoneno,
             totalAmount:totalAmount,
-            totalDiscount:totalDiscount
+            totalDiscount:totalDiscount,
+            prescription:prescription
 
         }
 

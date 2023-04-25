@@ -43,7 +43,8 @@ export class MRloginComponent {
                 
                         localStorage['login_status'] = '1'
                         localStorage['username'] = response['data'][0].username
-                        localStorage['id'] = response['data'][0].id
+                        localStorage['userid'] = response['data'][0]._id
+                        
                         localStorage['flag'] = '0'
 
                    

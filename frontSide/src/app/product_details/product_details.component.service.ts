@@ -11,13 +11,13 @@ export class ProductDetailsService {
     constructor(private httpClient: HttpClient) { }
     
 
-    getProduct(id: number)
+    getProduct(id: string)
     {
         return this.httpClient.get(this.url + id)
     }
 
 
-    postInCart(Quantity:number,totalAmount:number,totalDiscount:number,MRid:number,productID:number)
+    postInCart(Quantity:number,totalAmount:number,totalDiscount:number,MRid:string,productID:string)
     {
         const body = {
             Quantity:Quantity,

@@ -19,6 +19,7 @@ export class UserOrdersComponent implements OnInit {
     city = ''
     pincode: String = ''
     address = ''
+    prescription: ImageBitmap
 
 
 
@@ -61,7 +62,7 @@ export class UserOrdersComponent implements OnInit {
         else{
             if(confirm('Are you sure ? Once Ordered can not be canceled' ))
             {
-              const userid = localStorage['id']
+              const userid = localStorage['userid']
 
               const address = this.address +', ' + this.city +', ' + this.state +', ' + this.pincode
               const drname = this.drname
@@ -69,14 +70,16 @@ export class UserOrdersComponent implements OnInit {
 
               this.OrderDate = Date()
               this.deliveryDate = this.OrderDate + 3
-              var totalAmount
-              var totalDiscount
+              var totalAmount = localStorage['TotalAmount']
+              var totalDiscount = localStorage['TotalDiscount']
 
-              this.service.UpdateOrders(this.OrderDate,this.deliveryDate,this.PaymentMode,userid,drname,address,drphoneno,totalAmount,totalDiscount)
+              this.service.UpdateOrders(this.OrderDate,this.deliveryDate,this.PaymentMode,userid,drname,address,drphoneno,totalAmount,totalDiscount,this.prescription)
               .subscribe((response)=>{
                   if(response['status']=='success')
                   {
                       alert('success')
+                      localStorage['TotalAmount'] = 0
+                      localStorage['TotalDiscount'] = 0
                       this.router.navigate(['/MRlogin/cart'])
                   }
                   else
@@ -89,7 +92,12 @@ export class UserOrdersComponent implements OnInit {
         }
 
     }
-
+    onSelectImage(event)
+     {
+         this.prescription = event.target.files[0]
+     }
     ngOnInit() { }
 
 }
+
+
