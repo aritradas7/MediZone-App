@@ -2,7 +2,7 @@
 <br><br>
 
 <div class="color">
-<h3 class="boxed">{{msg}}:-</h3>
+<h3 class="boxed">{{msg}}</h3>
 
 <div class="row" *ngFor="let product of Cart">
       
@@ -23,7 +23,8 @@
                  <b> <td>You saved:- <font color="blue"> ₹{{product.totalDiscount}}/-</font></td> </b> <br>
                 <b> <td>Amount:- <font color="blue"> ₹{{product.totalAmount}}/-</font></td> </b>
                   <br>
-                <button (click)="onEdit(product.ProductID,product.id,product.Quantity)" type="button" class="btn btn-info">Edit</button>
+                <button (click)="onEdit(product.productID,product.Quantity)" type="button" class="btn btn-info">Edit</button>
+                <button (click)="onDelete(product.productID)" type="button" class="btn btn-danger">Delete</button>
                 </div>
 
             </div>          

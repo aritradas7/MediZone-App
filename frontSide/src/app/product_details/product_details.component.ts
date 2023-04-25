@@ -17,11 +17,14 @@ export class ProductDetailsComponent implements OnInit {
     totalDiscount: number
     MRid:string
 
+    
+
     constructor(private service:ProductDetailsService,
         private activateRoute:ActivatedRoute,
         private cartService: ProductDetailsService,
         private route:Router) {
-      
+
+        
         this.id = this.activateRoute.snapshot.params['id']
       
         if(this.id)
@@ -31,7 +34,7 @@ export class ProductDetailsComponent implements OnInit {
                 {
                     this.product = response['data'][0]
                     this.rate = this.product.priceWithDiscount
-                    this.temp = this.rate
+                    this.temp = this.rate*this.count
                 }
             })
 
@@ -109,6 +112,8 @@ export class ProductDetailsComponent implements OnInit {
         
      }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        
+    }
 }
 

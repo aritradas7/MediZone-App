@@ -36,11 +36,11 @@ export class CartComponent implements OnInit {
                 //TO GET TOTAL MONEY AND SAVING
 
                 if(this.Cart.length == 0){
-                    this.msg = 'your cart is empty'
+                    this.msg = 'Your cart is empty'
                     this.empty = true
                 }
                 else{
-                    this.msg = 'your items list'
+                    this.msg = 'Your items list'
                     this.empty = false
                 }
                 for(let i = 0;i < this.Cart.length;i++)
@@ -59,11 +59,14 @@ export class CartComponent implements OnInit {
         })
     }
 
-    onEdit(id:number,tableid:number,quantity:number) {
-        localStorage['orderDetailsTableID'] = tableid
+    onEdit(id:string,quantity:number) {
         localStorage['Quantity'] = quantity
         this.route.navigate(['/MRlogin/cartEdit/'+id])
-      }
+    }
+
+    onDelete(id:string) {
+        this.route.navigate(['/MRlogin/cartDelete/'+id])
+    }
 
     onOrderPlace(){
             this.route.navigate(['/MRlogin/cart/placeorder'])

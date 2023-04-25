@@ -97,15 +97,7 @@ router.put('/edit_product/:id', (request, response) => {
 // to get single result of product by id for product details
 router.get('/:id', (request, response) => {
     const { id } = request.params
-        // const connection = db.connect1()
-        // const statement = `select * from products where id='${id}'`
-        // connection.query(statement, (error, data) => {
-
-
-    //     response.send(utils.createResult(error, data))
-
-    // })
-    console.log("prodid")
+    console.log("prodid-here")
     console.log(id)
     prodModel.find({ _id: id }, function(err, item) {
         const result = {}

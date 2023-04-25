@@ -13,10 +13,9 @@ export class CartProductDetailsComponent implements OnInit {
     count: number = 1
     rate: number
     temp: number
-    id: number
+    id: string
     totalDiscount: number
-    MRid:number
-    orderDetailsTableID:number
+    MRid:string
 
     constructor(private service:CartProductDetailsService,
         private activateRoute:ActivatedRoute,
@@ -24,7 +23,7 @@ export class CartProductDetailsComponent implements OnInit {
         private route:Router) {
       
         this.id = this.activateRoute.snapshot.params['id']
-      
+
         if(this.id)
         {
             this.service.getProduct(this.id).subscribe(response => {
@@ -33,12 +32,14 @@ export class CartProductDetailsComponent implements OnInit {
                     this.product = response['data'][0]
                     this.rate = this.product.priceWithDiscount
                     this.temp = this.rate
+                    this.rate = this.temp*this.count
                 }
             })
 
         }
 
             this.count = Number(localStorage['Quantity'])
+            this.rate = this.temp*this.count
      }
 
 
@@ -50,7 +51,7 @@ export class CartProductDetailsComponent implements OnInit {
 
      OnDecrement()
      {
-        if(this.count == 0)
+        if(this.count == 1)
         {
             alert('Can not decrement')
         }
@@ -69,30 +70,15 @@ export class CartProductDetailsComponent implements OnInit {
          }
          else
          {
-                this.MRid = localStorage['id']
-                this.orderDetailsTableID = localStorage['orderDetailsTableID']
+                this.MRid = localStorage['userid']
                 this.totalDiscount = (this.product.price * this.count) - this.rate
-
-            if(this.count != 0)
-            {
-                this.cartService.postInCart(this.count,this.rate,this.totalDiscount,this.MRid,this.id,this.orderDetailsTableID)
-               .subscribe(response =>{
-                if(response['status'] == 'success'){
-                    alert('item updated')
-                    this.route.navigate(['MRlogin/cart'])
-                  }
-                    })
-
-            }
-            else{
-                this.cartService.DeleteFromCart(this.orderDetailsTableID)
-                .subscribe(response => {
-                    if(response['status'] == 'success'){
-                        alert('item updated')
-                        this.route.navigate(['MRlogin/cart'])
-                    }
+                this.cartService.postInCart(this.count,this.rate,this.totalDiscount,this.MRid,this.id)
+                .subscribe(response =>{
+                 if(response['status'] == 'success'){
+                     alert('item updated')
+                     this.route.navigate(['MRlogin/cart'])
+                   }
                 })
-            }
 
 
         }
