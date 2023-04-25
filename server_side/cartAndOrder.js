@@ -11,25 +11,38 @@ const router = express.Router()
 // to insert details of adding to cart product
 router.post('/cart', (request, response) => {
     const { Quantity, totalAmount, totalDiscount, MRid, productID } = request.body
-    console.log("addcart")
-    var cartDetails = new CartModel({
-        Quantity: Quantity,
-        totalAmount: totalAmount,
-        totalDiscount: totalDiscount,
-        MRid: MRid,
-        productID: productID,
-        flag: 0
-    });
 
-    cartDetails.save((err, doc) => {
-        if (!err) {
-            console.log('Cart added successfully!');
-            response.send(utils.createResult(err, doc))
-        } else {
-            console.log('Error during record insertion : ' + err);
+    CartModel.find({ MRid: MRid, productID: productID }, function(err, item) {
+        console.log('Matched Count')
+        console.log(item.length)
+        if(item.length == 0){
+            console.log("addcart")
+            var cartDetails = new CartModel({
+                Quantity: Quantity,
+                totalAmount: totalAmount,
+                totalDiscount: totalDiscount,
+                MRid: MRid,
+                productID: productID,
+                flag: 0
+            });
+        
+            cartDetails.save((err, doc) => {
+                if (!err) {
+                    console.log('Cart added successfully!');
+                    response.send(utils.createResult(err, doc))
+                } else {
+                    console.log('Error during record insertion : ' + err);
+                }
+            });
+            
         }
-
+        else{
+            
+            response.send(utils.createResult("Item already in cart. Please go to cart and increase quantity (if needed)", ""))
+        }
     });
+
+    
 })
 
 // to show product in cart list

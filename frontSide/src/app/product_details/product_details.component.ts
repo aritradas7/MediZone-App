@@ -80,6 +80,9 @@ export class ProductDetailsComponent implements OnInit {
                 if(response['status'] == 'success'){
                     alert('items added in your cart')
                   }
+                  else{
+                    alert(response['error'])
+                  }
           })
 
          }
