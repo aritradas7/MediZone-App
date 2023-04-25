@@ -1,16 +1,12 @@
-
-.color{
-     background-color:moccasin; 
+.color {
+    background-color: moccasin;
     /* background-color:whitesmoke;  */
 }
+
 .boxed {
-    
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Poppins", sans-serif;
+}
 
- } 
- 
- .stepper{
-     font-size: 20px;
- }
-
- 
+.stepper {
+    font-size: 20px;
+}

@@ -57,6 +57,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ConsultDoctorComponent } from './consult-doctor/consult-doctor.component';
 import { AddConsultationService } from './consult-doctor/consult-doctor.service';
 import { ContactUsService } from './contact-us/contact-us.service';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 
@@ -100,7 +101,8 @@ const routes: Route[] = [
   { path: 'MRlogin/dashboard/MRorders/:id', component: MROrderListComponent },
   { path: 'MRlogin/user-profile', component: UserProfileComponent },
   { path: 'MRlogin/contact_us', component: ContactUsComponent},
-  { path: 'MRlogin/consult-doctor', component: ConsultDoctorComponent}
+  { path: 'MRlogin/consult-doctor', component: ConsultDoctorComponent},
+  { path: 'MRlogin/about-us', component: AboutUsComponent}
 
 ]
 
@@ -134,7 +136,8 @@ const routes: Route[] = [
     MROrderListComponent,
     UserProfileComponent,
     ContactUsComponent,
-    ConsultDoctorComponent
+    ConsultDoctorComponent,
+    AboutUsComponent
 
   ],
   imports: [
