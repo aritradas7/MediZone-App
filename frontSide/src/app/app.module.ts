@@ -97,7 +97,8 @@ const routes: Route[] = [
   { path: 'MRlogin/dashboard/orders', component: AllOrderListComponent },
   { path: 'MRlogin/dashboard/MRorders/:id', component: MROrderListComponent },
   { path: 'MRlogin/user-profile', component: UserProfileComponent },
-  { path: 'MRlogin/contact_us', component: ContactUsComponent}
+  { path: 'MRlogin/contact_us', component: ContactUsComponent},
+  { path: 'MRlogin/consult-doctor', component: ConsultDoctorComponent}
 
 ]
 
