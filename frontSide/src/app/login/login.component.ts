@@ -20,14 +20,14 @@ export class LoginComponent implements OnInit {
                 if(response['status']=='success')
                 {
                     this.users = response['data']
-                    
+
                 }
                 else{
                     alert('error')
                     console.log(response['error'])
-                    
+
                 }
-        })            
+        })
      }
 
      loadAllProducts() {
@@ -41,12 +41,12 @@ export class LoginComponent implements OnInit {
             }
           })
       }
-  
+
    onUserSelect(id: number)
    {
       this.router.navigate(['/login/dashboard/user/edit_user/'+id])
-   }   
-      
+   }
+
    ondelete(productId: number) {
     this.service
       .deleteProduct(productId)
@@ -71,6 +71,12 @@ export class LoginComponent implements OnInit {
     onOrderList(id:number){
         this.router.navigate(['/MRlogin/dashboard/MRorders'+'/'+id])
     }
+
+    onlogout()
+    {
+        this.router.navigate(['/login'])
+    }
+
 
     ngOnInit() { }
 }

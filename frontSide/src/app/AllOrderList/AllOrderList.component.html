@@ -17,35 +17,38 @@
             <th>Delivery Date</th>
             <th>Full Address</th>
             <th>Delivery Status</th>
-            
-           
+
+
         </tr>
-        </thead>
-        
-        
-        <tbody>
-            <tr *ngFor="let pr of products; let index=index">
-                <td>{{index+1}}</td>
-                <td>{{pr._id}}</td>
-                <td>{{pr.totalDiscount}}</td>
-                <td>{{pr.totalAmount}}</td>
-                <td>{{pr.drname}}</td>
-                <td>{{pr.drphoneno}}</td>
-                <td>{{pr.PaymentMode}}</td>
-                <td>{{pr.OrderDate}}</td>
-                <td>{{pr.deliveryDate}}</td>
-                <td>{{pr.address}}</td>
-        
-                <td *ngIf="isexpire(pr)">  <font color="green">  Done </font> </td> 
-        
-                <td *ngIf="!isexpire(pr)">  <font color="red"> In Progress  </font>  </td>  
-        
-                <!-- <td ><button (click)="ondelete(pr.id)" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i></button>
+    </thead>
+
+
+    <tbody>
+        <tr *ngFor="let pr of products; let index=index">
+            <td>{{index+1}}</td>
+            <td>{{pr._id}}</td>
+            <td>{{pr.totalDiscount}}</td>
+            <td>{{pr.totalAmount}}</td>
+            <td>{{pr.drname}}</td>
+            <td>{{pr.drphoneno}}</td>
+            <td>{{pr.PaymentMode}}</td>
+            <td>{{pr.OrderDate}}</td>
+            <td>{{pr.deliveryDate}}</td>
+            <td>{{pr.address}}</td>
+
+            <td *ngIf="isexpire(pr)">
+                <font color="green"> Done </font>
+            </td>
+
+            <td *ngIf="!isexpire(pr)">
+                <font color="red"> In Progress </font>
+            </td>
+
+            <!-- <td ><button (click)="ondelete(pr.id)" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i></button>
                 </td> -->
-            </tr>
-        
-        
-        </tbody>
+        </tr>
 
-
+    </tbody>
 </table>
+
+<a> <button (click)="onlogout()" class="btn btn-warning">Logout</button> </a>

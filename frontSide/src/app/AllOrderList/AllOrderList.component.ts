@@ -22,9 +22,9 @@ export class AllOrderListComponent  {
         private service : AllOrderListService) {
 
          this.loadAllProducts()
-         
+
     }
- 
+
 
     ondelete(id: number) {
       console.log(id)
@@ -52,14 +52,14 @@ export class AllOrderListComponent  {
   loadAllProducts() {
 
     this.date = new Date()
-  
+
     this.mrid = localStorage['id']
     this.service
       .getAllProducts()
       .subscribe(response => {
         if (response['status'] == 'success') {
           this.products = response['data']
-          
+
         } else {
           alert('error')
         }
@@ -72,5 +72,11 @@ export class AllOrderListComponent  {
 
     return new Date(product.deliveryDate).valueOf() < new Date(currentdate).valueOf();
   }
+
+  onlogout()
+    {
+        this.router.navigate(['/login'])
+    }
+
 
 }

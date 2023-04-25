@@ -17,16 +17,16 @@ export class ProductComponent  {
         productservice: ProductService,
        private service : ProductService) {
 
-            
+
             productservice.getproduct().subscribe((response)=>{
                 if(response['status']=='success')
                 {
-                    this.products = response['data']         
+                    this.products = response['data']
                 }
                 else{
                     alert('error')
                     console.log(response['error'])
-                    
+
                 }
          })
          this.loadAllProducts()
@@ -67,10 +67,17 @@ export class ProductComponent  {
           })
       }
 
-      
+
    onSelect(id: number)
    {
        this.router.navigate(['/login/dashboard/product/edit_product/'+id])
    }
 
+   onlogout()
+    {
+        this.router.navigate(['/login'])
+    }
+
+
 }
+
