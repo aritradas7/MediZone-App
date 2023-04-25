@@ -1,5 +1,6 @@
 const mongoose = require("./db");
 
+
 // create an schema
 var orderSchema = new mongoose.Schema({
 
@@ -11,7 +12,8 @@ var orderSchema = new mongoose.Schema({
     address: String,
     drphoneno: String,
     totalAmount: String,
-    totalDiscount: String
+    totalDiscount: String,
+    prescription: Buffer
 });
 
 var cartModel = mongoose.model('order', orderSchema);

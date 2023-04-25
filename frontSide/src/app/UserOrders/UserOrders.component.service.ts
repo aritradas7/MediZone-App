@@ -17,7 +17,7 @@ export class UserOrdersService {
      }
 
 
-     UpdateOrders(
+    UpdateOrders(
         OrderDate:String,
         deliveryDate:String,
         PaymentMode: number,
@@ -27,9 +27,8 @@ export class UserOrdersService {
         drphoneno:String,
         totalAmount:String,
         totalDiscount:String,
-        prescription:ImageBitmap
-
-        )
+        prescription:Buffer
+    )
 
         {
 

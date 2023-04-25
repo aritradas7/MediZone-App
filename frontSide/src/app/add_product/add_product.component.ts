@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AddProductService } from './add_product.service';
 
+declare const Buffer;
+
 @Component({
     selector: 'add-product',
     templateUrl: './add_product.component.html',
@@ -72,6 +74,9 @@ export class Add_productComponent implements OnInit {
 
      onSelectImage(event)
      {
-         this.image = event.target.files[0]
+        var img = event.target.files[0]
+        var encImg = img.toString('base64');
+        var s = Buffer.from(encImg, 'base64');
+        this.image = s
      }
 }

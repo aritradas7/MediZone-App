@@ -84,8 +84,9 @@ router.post('/cartDelete', (request, response) => {
 // to update orderlist (called when user is confired to order)
 router.put('/cart/confirmorder', (request, response) => {
     console.log("this called")
-    const { OrderDate, deliveryDate, PaymentMode, userid, drname, address, drphoneno, totalAmount, totalDiscount } = request.body
-    
+    const { OrderDate, deliveryDate, PaymentMode, userid, drname, address, drphoneno, totalAmount, totalDiscount, prescription } = request.body
+    console.log(prescription)
+    console.log('#################################################')
     //var plist = CartModel.find({ MRid: userid });
  
     var order = new OrderModel({
@@ -97,7 +98,8 @@ router.put('/cart/confirmorder', (request, response) => {
         address: address,
         drphoneno: drphoneno,
         totalAmount: totalAmount,
-        totalDiscount: totalDiscount
+        totalDiscount: totalDiscount,
+        prescription: prescription
     });
     console.log(order)
     var oid = ''

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserOrdersService } from './UserOrders.component.service';
 
+declare const Buffer;
 
 @Component({
     selector: 'add-user',
@@ -19,7 +20,7 @@ export class UserOrdersComponent implements OnInit {
     city = ''
     pincode: String = ''
     address = ''
-    prescription: ImageBitmap
+    prescription: Buffer
 
 
 
@@ -94,7 +95,10 @@ export class UserOrdersComponent implements OnInit {
     }
     onSelectImage(event)
      {
-         this.prescription = event.target.files[0]
+        var img = event.target.files[0]
+        var encImg = img.toString('base64');
+        var s = Buffer.from(encImg, 'base64');
+        this.prescription = s
      }
     ngOnInit() { }
 
