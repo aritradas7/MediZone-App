@@ -131,33 +131,24 @@ router.put('/cart/confirmorder', (request, response) => {
 
 })
 
-
-
-//to get address of dr
-router.get('/cart/confirmorder', (request, response) => {
-
-    const connection = db.connect1()
-    const statement = `
-    select * from locationofdr`
-    connection.query(statement, (error, data) => {
-        connection.end()
-        response.send(utils.createResult(error, data))
-    })
-})
-
-
 //to get list of orders of a MR
 router.post('/orders', (request, response) => {
     const { mrid } = request.body
-    const connection = db.connect1()
-    const statement = `
-    select p.image,p.name, o.id,o.Quantity,o.totalDiscount,o.totalAmount,o.drname,o.drphoneno,o.PaymentMode,
-    o.OrderDate,o.deliveryDate,addressOFdr from orderdetails o inner join products p where o.ProductID = p.id and o.MRid = ${mrid} and flag = 1 order by o.deliveryDate desc`
+    // const connection = db.connect1()
+    // const statement = `
+    // select p.image,p.name, o.id,o.Quantity,o.totalDiscount,o.totalAmount,o.drname,o.drphoneno,o.PaymentMode,
+    // o.OrderDate,o.deliveryDate,addressOFdr from orderdetails o inner join products p where o.ProductID = p.id and o.MRid = ${mrid} and flag = 1 order by o.deliveryDate desc`
 
-    connection.query(statement, (error, data) => {
-        connection.end()
-        response.send(utils.createResult(error, data))
-    })
+    // connection.query(statement, (error, data) => {
+    //     connection.end()
+    //     response.send(utils.createResult(error, data))
+    // })
+    console.log("show past orders")
+    OrderModel.find({ userid: mrid }, function(err, item) {
+        const result = {}
+        console.log(item)
+        response.send(utils.createResult(err, item))
+    });
 })
 
 router.delete('/orders/:id', (request, response) => {

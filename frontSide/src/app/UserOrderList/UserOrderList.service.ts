@@ -13,7 +13,7 @@ export class UserOrderListService {
         this.http = httpClient
      }
 
-     getAllProducts(mrid:number) {
+     getAllProducts(mrid:string) {
          const body = {
              mrid:mrid
          }

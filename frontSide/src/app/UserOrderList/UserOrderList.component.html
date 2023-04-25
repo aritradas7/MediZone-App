@@ -7,9 +7,7 @@
 <thead>
 <tr>
     <th>No</th>
-    <th>Image</th>
-    <th>Product Name</th>
-    <th>Quantity</th>
+    <th>Order Number</th>
     <th>Discount</th>
     <th>Amount</th>
     <th>DR Name</th>
@@ -28,11 +26,7 @@
 <tbody>
     <tr *ngFor="let pr of products; let index=index">
         <td>{{index+1}}</td>
-        <td>
-            <img class="thumbnail" src="http://localhost:4000/{{pr.image}}" alt="">
-        </td>
-        <td>{{pr.name}}</td>
-        <td>{{pr.Quantity}}</td>
+        <td>{{pr._id}}</td>
         <td>{{pr.totalDiscount}}</td>
         <td>{{pr.totalAmount}}</td>
         <td>{{pr.drname}}</td>
@@ -40,7 +34,7 @@
         <td>{{pr.PaymentMode}}</td>
         <td>{{pr.OrderDate}}</td>
         <td>{{pr.deliveryDate}}</td>
-        <td>{{pr.addressOFdr}}</td>
+        <td>{{pr.address}}</td>
 
         <td *ngIf="isexpire(pr)">  <font color="green">  Done </font> </td> 
 

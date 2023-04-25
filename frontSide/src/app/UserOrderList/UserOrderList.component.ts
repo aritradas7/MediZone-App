@@ -12,7 +12,7 @@ import { UserOrderListService } from './UserOrderList.service';
 export class UserOrderListComponent  {
 
     products: any[]
-    mrid:number
+    mrid:string
     date:Date
    // status:String
 
@@ -46,7 +46,8 @@ export class UserOrderListComponent  {
 
     this.date = new Date()
   
-    this.mrid = localStorage['id']
+    this.mrid = localStorage['userid']
+    
     this.service
       .getAllProducts(this.mrid)
       .subscribe(response => {
