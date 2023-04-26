@@ -8,7 +8,8 @@ var cartSchema = new mongoose.Schema({
     totalDiscount: String,
     MRid: String,
     productID: String,
-    flag: Number
+    flag: Number,
+    file: String
 });
 
 var cartModel = mongoose.model('cart', cartSchema);

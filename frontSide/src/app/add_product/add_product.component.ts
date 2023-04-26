@@ -23,7 +23,7 @@ export class Add_productComponent implements OnInit {
     mgfdate: string
     expiredate: string
     description: string
-    image: string
+    image: any
 
     service: AddProductService
     constructor(private router: Router,
@@ -75,6 +75,6 @@ export class Add_productComponent implements OnInit {
 
      onSelectImage(event)
      {
-        var img = event.target.files[0]
+        this.image = event.target.files[0]
      }
 }

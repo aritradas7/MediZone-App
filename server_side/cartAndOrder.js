@@ -10,7 +10,7 @@ const router = express.Router()
 
 // to insert details of adding to cart product
 router.post('/cart', (request, response) => {
-    const { Quantity, totalAmount, totalDiscount, MRid, productID } = request.body
+    const { Quantity, totalAmount, totalDiscount, MRid, productID, file } = request.body
 
     CartModel.find({ MRid: MRid, productID: productID }, function(err, item) {
         console.log('Matched Count')
@@ -23,7 +23,8 @@ router.post('/cart', (request, response) => {
                 totalDiscount: totalDiscount,
                 MRid: MRid,
                 productID: productID,
-                flag: 0
+                flag: 0,
+                file: file
             });
         
             cartDetails.save((err, doc) => {

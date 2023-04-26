@@ -17,14 +17,15 @@ export class ProductDetailsService {
     }
 
 
-    postInCart(Quantity:number,totalAmount:number,totalDiscount:number,MRid:string,productID:string)
+    postInCart(Quantity:number,totalAmount:number,totalDiscount:number,MRid:string,productID:string,file:string)
     {
         const body = {
             Quantity:Quantity,
             totalAmount:totalAmount,
             totalDiscount:totalDiscount,
             MRid:MRid,
-            productID:productID
+            productID:productID,
+            file:file
         }
 
         return this.httpClient.post(this.url1,body)

@@ -23,7 +23,7 @@ export class ProductService {
          return this.http.get(this.url)
      }
 
-    deleteProduct(id: number) {
+    deleteProduct(id: string) {
         return this.http.delete(this.url + '/' + id)
       }
     

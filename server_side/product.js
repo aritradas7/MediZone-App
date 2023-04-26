@@ -3,11 +3,23 @@ const utils = require('./utils')
 var mongoose = require('mongoose');
 const express = require('express')
 const multer = require('multer')
-var prodModel = require('./productModel');
+var prodModel = require('./productModel')
 
 const router = express.Router()
 
-const upload = multer({ dest: 'images' })
+const upload = multer({ 
+    storage: multer.diskStorage({
+        destination: (req, file, callback) => {
+            let path = "images";
+            callback(null,path);
+        },
+        filename: (req,file,callback) => {
+            callback(null,file.originalname);
+        }
+    })
+});
+
+
 
 router.get('/', (request, response) => {
     // const connection = db.mongoose()
@@ -27,7 +39,9 @@ router.get('/', (request, response) => {
 
 router.post('/', upload.single('image'), (request, response) => {
     const { name, price, discount, priceWithDiscount, doseInMG, mgfdate, expiredate, description, image, categoryid } = request.body
-
+    var file = request.file.originalname
+    
+    file = "http://localhost:4000/images/"+file
     console.log(categoryid);
 
     var prodDetails = new prodModel({
@@ -40,7 +54,7 @@ router.post('/', upload.single('image'), (request, response) => {
         expiredate: expiredate,
         description: description,
         categoryid: categoryid,
-        file: image
+        file: file
     });
 
     prodDetails.save((err, doc) => {

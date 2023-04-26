@@ -16,6 +16,7 @@ export class ProductDetailsComponent implements OnInit {
     id: string
     totalDiscount: number
     MRid:string
+    file:string
 
     
 
@@ -75,7 +76,7 @@ export class ProductDetailsComponent implements OnInit {
                 this.MRid = localStorage['userid']
                 this.totalDiscount = (this.product.price * this.count) - this.rate
 
-                this.cartService.postInCart(this.count,this.rate,this.totalDiscount,this.MRid,this.id)
+                this.cartService.postInCart(this.count,this.rate,this.totalDiscount,this.MRid,this.id,this.product.file)
                .subscribe(response =>{
                 if(response['status'] == 'success'){
                     alert('items added in your cart')

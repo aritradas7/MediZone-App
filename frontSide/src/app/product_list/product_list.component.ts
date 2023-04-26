@@ -55,7 +55,7 @@ export class ProductComponent  {
       })
   }
 
-   ondelete(productId: number) {
+   ondelete(productId: string) {
         this.service
           .deleteProduct(productId)
           .subscribe(response => {
