@@ -68,6 +68,7 @@ export class CartComponent implements OnInit {
         this.service.deleteCart(productId).subscribe(response =>{
             if(response['status'] == 'success'){
                 this.loadProduct()
+                location.reload();
             }
             else{
                 console.log(response['error'])

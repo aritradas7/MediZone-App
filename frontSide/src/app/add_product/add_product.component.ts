@@ -23,7 +23,7 @@ export class Add_productComponent implements OnInit {
     mgfdate: string
     expiredate: string
     description: string
-    image: any
+    image: string
 
     service: AddProductService
     constructor(private router: Router,
@@ -45,6 +45,7 @@ export class Add_productComponent implements OnInit {
                 if(response['status']=='success')
                 {
                     alert('added product')
+                    this.router.navigate(['/login/dashboard/product'])
                 }
                 else
                 {
@@ -75,8 +76,5 @@ export class Add_productComponent implements OnInit {
      onSelectImage(event)
      {
         var img = event.target.files[0]
-        var encImg = img.toString('base64');
-        var s = Buffer.from(encImg, 'base64');
-        this.image = s
      }
 }

@@ -26,8 +26,7 @@ router.get('/', (request, response) => {
 
 
 router.post('/', upload.single('image'), (request, response) => {
-    const file = request.file.filename
-    const { name, price, discount, priceWithDiscount, doseInMG, mgfdate, expiredate, description, categoryid } = request.body
+    const { name, price, discount, priceWithDiscount, doseInMG, mgfdate, expiredate, description, image, categoryid } = request.body
 
     console.log(categoryid);
 
@@ -40,7 +39,8 @@ router.post('/', upload.single('image'), (request, response) => {
         mgfdate: mgfdate,
         expiredate: expiredate,
         description: description,
-        categoryid: categoryid
+        categoryid: categoryid,
+        file: image
     });
 
     prodDetails.save((err, doc) => {
@@ -57,25 +57,24 @@ router.post('/', upload.single('image'), (request, response) => {
 
 router.delete('/:id', (request, response) => {
     const { id } = request.params
-    const connection = db.connect1()
-    const statement = `delete from products where id = ${id}`
-    connection.query(statement, (error, data) => {
-        connection.end()
-        response.send(utils.createResult(error, data))
-    })
+    console.log(id)
+    
+    prodModel.deleteOne({_id:id}, function(err, item) {
+        const result = {}
+        console.log(item)
+        response.send(utils.createResult(err, item))
+    });
 })
 
 // this api is for get details of product     
 router.get('/edit_product/:id', (request, response) => {
     const { id } = request.params
-    const connection = db.connect1()
-    const statement = `select * from products where id='${id}'`
-    connection.query(statement, (error, data) => {
-
-
-        response.send(utils.createResult(error, data))
-
-    })
+    
+    prodModel.find({_id:id}, function(err, item) {
+        const result = {}
+        console.log(item)
+        response.send(utils.createResult(err, item))
+    });
 })
 
 
@@ -84,14 +83,21 @@ router.get('/edit_product/:id', (request, response) => {
 router.put('/edit_product/:id', (request, response) => {
     const { id } = request.params
     const { name, price, discount, priceWithDiscount, doseInMG, mgfdate, expiredate, description, categoryid } = request.body
-    const connection = db.connect1()
+    // const connection = db.connect1()
 
-    const statement = `update products set name='${name}',price='${price}',discount='${discount}',priceWithDiscount='${priceWithDiscount}',doseInMG='${doseInMG}',mgfdate='${mgfdate}',expiredate='${expiredate}',description='${description}',categoryid='${categoryid}' where id =${id}`
+    // const statement = `update products set name='${name}',price='${price}',discount='${discount}',priceWithDiscount='${priceWithDiscount}',doseInMG='${doseInMG}',mgfdate='${mgfdate}',expiredate='${expiredate}',description='${description}',categoryid='${categoryid}' where id =${id}`
 
-    connection.query(statement, (error, data) => {
-        connection.end()
-        response.send(utils.createResult(error, data))
-    })
+    // connection.query(statement, (error, data) => {
+    //     connection.end()
+    //     response.send(utils.createResult(error, data))
+    // })
+    prodModel.updateOne({_id:id},{$set:{name:name,price:price,priceWithDiscount:priceWithDiscount,
+        doseInMG:doseInMG,mgfdate:mgfdate,expiredate:expiredate,description:description,
+        categoryid:categoryid}}, function(err, item) {
+        const result = {}
+        console.log(item)
+        response.send(utils.createResult(err, item))
+    });
 })
 
 // to get single result of product by id for product details

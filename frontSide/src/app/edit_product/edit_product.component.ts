@@ -21,7 +21,7 @@ export class Edit_productComponent implements OnInit {
   mgfdate = null
   expiredate = null
   description = ''
-  id = 0
+  id: string
 
 
     constructor(
@@ -34,20 +34,20 @@ export class Edit_productComponent implements OnInit {
 
             if(this.id)
             {
-                this.service.getUserDetails(this.id).subscribe(response =>{
+                this.service.getProductDetails(this.id).subscribe(response =>{
                     if(response['status']=='success')
                     {
             
-                        const user = response['data']
+                        const prd = response['data']
 
-                        this.name = user[0].name
-                        this.price = user[0].price
-                        this.discount = user[0].discount
-                        this.priceWithDiscount = user[0].priceWithDiscount
-                        this.doseInMG = user[0].doseInMG
-                        this.mgfdate = user[0].mgfdate
-                        this.expiredate = user[0].expiredate
-                        this.description = user[0].description
+                        this.name = prd[0].name
+                        this.price = prd[0].price
+                        this.discount = prd[0].discount
+                        this.priceWithDiscount = prd[0].priceWithDiscount
+                        this.doseInMG = prd[0].doseInMG
+                        this.mgfdate = prd[0].mgfdate
+                        this.expiredate = prd[0].expiredate
+                        this.description = prd[0].description
                     }
                     else{
                         console.log(response['error'])

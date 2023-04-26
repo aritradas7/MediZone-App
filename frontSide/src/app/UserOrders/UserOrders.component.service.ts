@@ -24,6 +24,7 @@ export class UserOrdersService {
         return this.http.post(this.url2, body)
      }
     UpdateOrders(
+        
         OrderDate:String,
         deliveryDate:String,
         PaymentMode: number,
@@ -37,7 +38,6 @@ export class UserOrdersService {
     )
 
         {
-
         const body = {
             OrderDate:OrderDate,
             deliveryDate:deliveryDate,

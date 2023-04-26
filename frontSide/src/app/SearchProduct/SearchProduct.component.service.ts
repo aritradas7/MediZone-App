@@ -11,7 +11,7 @@ export class SearchProductService {
      getSearch(ProductName:String) {
 
          const body = {
-            ProductName:ProductName
+            searchStr:ProductName
          }
 
         return this.httpClient.post(this.url,body)

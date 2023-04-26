@@ -63,7 +63,7 @@ export class UserHomeComponent implements OnInit {
     }
 
 
-  OnSelectProduct(id: number) {
+  OnSelectProduct(id: string) {
     this.router.navigate(['/MRlogin/product_details/'+id])
   }
 

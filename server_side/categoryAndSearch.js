@@ -59,17 +59,14 @@ router.get('/ayurvedic', (request, response) => {
 
 
 router.post('/search', (request, response) => {
-    const { ProductName } = request.body
+    const { searchStr } = request.body
 
-    const connection = db.connect1()
-
-    const statement = `select * from products where name like '%${ProductName}%'  `
-
-    connection.query(statement, (error, data) => {
-        console.log(statement)
-        connection.end()
-        response.send(utils.createResult(error, data))
-    })
+    console.log(searchStr)
+    prodModel.find({name: { $regex : searchStr, $options: 'i' }}, function(err, item) {
+        const result = {}
+        console.log(item)
+        response.send(utils.createResult(err, item))
+    });
 })
 
 module.exports = router

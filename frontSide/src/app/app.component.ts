@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CanActivate,Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { LocationStrategy } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
@@ -18,10 +20,14 @@ export class AppComponent implements CanActivate {
 
   status = localStorage['login_status']
 
-  constructor(private router:Router)
+  constructor(private router:Router,private location: LocationStrategy)
   {
     this.loadStatus()
+    
+    
   }
+  
+
 
   canActivate()
   {  
@@ -36,6 +42,10 @@ export class AppComponent implements CanActivate {
       {
         this.isLoggedIn = true
         this.username = localStorage['username']
+        history.pushState(null, null, window.location.href);  
+        this.location.onPopState(() => {
+        history.pushState(null, null, window.location.href);})
+        
       }
   }
 
@@ -49,8 +59,11 @@ export class AppComponent implements CanActivate {
       localStorage['login_status'] = '0'
       localStorage['username'] = null
       localStorage['id'] = null
-
+      history.pushState(null, null, window.location.href);  
+        this.location.onPopState(() => {
+        history.pushState(null, null, window.location.href);})
       this.router.navigate(['/MRlogin'])
+      
     }
   }
 
@@ -62,3 +75,4 @@ export class AppComponent implements CanActivate {
   }
 
 }
+

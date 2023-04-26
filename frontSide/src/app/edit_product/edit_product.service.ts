@@ -21,7 +21,7 @@ export class EditProductService {
         expiredate: Date,
         description: String,
         categoryid: number,
-        id: number
+        id: string
     )
     {
         const body={
@@ -42,7 +42,7 @@ export class EditProductService {
     }
 
     
-    getUserDetails(id:number)
+    getProductDetails(id:string)
     {
         return this.http.get(this.url + '/' + id)
     }

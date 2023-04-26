@@ -11,8 +11,8 @@ var productSchema = new mongoose.Schema({
     mgfdate: String,
     expiredate: String,
     description: String,
-    image: String,
     categoryid: String,
+    file: String
 });
 
 var productModel = mongoose.model('products', productSchema);

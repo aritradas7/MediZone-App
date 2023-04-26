@@ -32,8 +32,8 @@
             <td>{{pr.drname}}</td>
             <td>{{pr.drphoneno}}</td>
             <td>{{pr.PaymentMode}}</td>
-            <td>{{pr.OrderDate}}</td>
-            <td>{{pr.deliveryDate}}</td>
+            <td>{{pr.OrderDate| slice:0:10}}</td>
+            <td>{{pr.deliveryDate| slice:0:10}}</td>
             <td>{{pr.address}}</td>
 
             <td *ngIf="isexpire(pr)">

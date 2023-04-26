@@ -4,8 +4,8 @@ const mongoose = require("./db");
 // create an schema
 var orderSchema = new mongoose.Schema({
 
-    OrderDate: String,
-    deliveryDate: String,
+    OrderDate: Date,
+    deliveryDate: Date,
     PaymentMode: Number,
     userid: String,
     drname: String,
