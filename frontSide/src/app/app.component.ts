@@ -63,9 +63,7 @@ export class AppComponent implements CanActivate {
         this.location.onPopState(() => {
         history.pushState(null, null, window.location.href);})
       this.router.navigate(['/MRlogin'])
-      history.pushState(null, null, window.location.href);  
-        this.location.onPopState(() => {
-        history.pushState(null, null, window.location.href);})
+      
     }
   }
 

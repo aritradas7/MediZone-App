@@ -11,16 +11,18 @@ declare const Buffer;
 })
 
 export class UserOrdersComponent implements OnInit {
-    drname = ''
-    phoneno =''
-    OrderDate = ''
-    deliveryDate = ''
+    drname = 'aa'
+    phoneno ='7894561230'
+    OrderDate: String
+    deliveryDate: String
     PaymentMode = 1
-    state = ''
-    city = ''
-    pincode: String = ''
-    address = ''
+    state = 'wb'
+    city = 'ss'
+    pincode: String = '456456'
+    address = 'asassas'
+    Date:Date=new Date()
     prescription: Buffer
+    
 
 
 
@@ -68,17 +70,18 @@ export class UserOrdersComponent implements OnInit {
               const address = this.address +', ' + this.city +', ' + this.state +', ' + this.pincode
               const drname = this.drname
               const drphoneno = this.phoneno
-
-              this.OrderDate = Date()
-              this.deliveryDate = this.OrderDate + 3
+              var OrderDate = new Date()
+              var deliveryDate = new Date()
+              deliveryDate.setDate( deliveryDate.getDate() + 3 );
               var totalAmount = localStorage['TotalAmount']
               var totalDiscount = localStorage['TotalDiscount']
+              
 
-              this.service.UpdateOrders(this.OrderDate,this.deliveryDate,this.PaymentMode,userid,drname,address,drphoneno,totalAmount,totalDiscount,this.prescription)
+              this.service.UpdateOrders(OrderDate.toLocaleDateString(),deliveryDate.toLocaleDateString(),this.PaymentMode,userid,drname,address,drphoneno,totalAmount,totalDiscount,this.prescription)
               .subscribe((response)=>{
                   if(response['status']=='success')
                   {
-                      alert('success')
+                      alert('Order Placed Successfully')
                       localStorage['TotalAmount'] = 0
                       localStorage['TotalDiscount'] = 0
                       localStorage['Quantity'] = 0

@@ -27,6 +27,7 @@ export class SearchProductComponent implements OnInit {
 
   loadAllProducts() {
     this.ProductName = localStorage['searchValue']
+    
     this.service
       .getSearch(this.ProductName)
       .subscribe(response => {
