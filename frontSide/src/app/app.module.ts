@@ -58,7 +58,10 @@ import { ConsultDoctorComponent } from './consult-doctor/consult-doctor.componen
 import { AddConsultationService } from './consult-doctor/consult-doctor.service';
 import { ContactUsService } from './contact-us/contact-us.service';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { SingleUserService } from './user-profile/user.service'
+import { SingleUserService } from './user-profile/user.service';
+import { ConsultationRequestsComponent } from './consultation-requests/consultation-requests.component';
+import { AdminConsultRequestComponent } from './admin-consult-request/admin-consult-request.component';
+import { UserQueriesComponent } from './user-queries/user-queries.component'
 
 
 
@@ -82,6 +85,8 @@ const routes: Route[] = [
 
   { path: 'login/dashboard/user/edit_user/:id', component: Edit_userComponent },
   { path: 'login/dashboard/product/edit_product/:id', component: Edit_productComponent },
+  { path: 'login/dashboard/admin-consult-request', component: AdminConsultRequestComponent},
+  { path: "login/dashboard/user-queries", component: UserQueriesComponent},
 
   { path: 'MRlogin/home', component: UserHomeComponent, canActivate: [AppComponent] },
 
@@ -103,7 +108,8 @@ const routes: Route[] = [
   { path: 'MRlogin/user-profile', component: UserProfileComponent },
   { path: 'MRlogin/contact_us', component: ContactUsComponent},
   { path: 'MRlogin/consult-doctor', component: ConsultDoctorComponent},
-  { path: 'MRlogin/about-us', component: AboutUsComponent}
+  { path: 'MRlogin/about-us', component: AboutUsComponent},
+  { path: 'MRlogin/consultation-request', component: ConsultationRequestsComponent}
 
 ]
 
@@ -138,7 +144,10 @@ const routes: Route[] = [
     UserProfileComponent,
     ContactUsComponent,
     ConsultDoctorComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    ConsultationRequestsComponent,
+    AdminConsultRequestComponent,
+    UserQueriesComponent
 
   ],
   imports: [
