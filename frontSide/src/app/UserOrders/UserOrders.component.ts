@@ -11,17 +11,16 @@ declare const Buffer;
 })
 
 export class UserOrdersComponent implements OnInit {
-    drname = 'aa'
-    phoneno ='7894561230'
-    OrderDate: String
-    deliveryDate: String
-    PaymentMode = 1
-    state = 'wb'
-    city = 'ss'
-    pincode: String = '456456'
-    address = 'asassas'
-    Date:Date=new Date()
-    prescription: Buffer
+    drname: string = ''
+    phoneno: string =''
+    OrderDate: string
+    deliveryDate: string
+    PaymentMode: string
+    state: string = ''
+    city: string = ''
+    pincode: string = ''
+    address: string = ''
+    image: any
     
 
 
@@ -76,8 +75,8 @@ export class UserOrdersComponent implements OnInit {
               var totalAmount = localStorage['TotalAmount']
               var totalDiscount = localStorage['TotalDiscount']
               
-
-              this.service.UpdateOrders(OrderDate.toLocaleDateString(),deliveryDate.toLocaleDateString(),this.PaymentMode,userid,drname,address,drphoneno,totalAmount,totalDiscount,this.prescription)
+              this.service.UpdateOrders(OrderDate.toLocaleDateString(),deliveryDate.toLocaleDateString(),
+              this.PaymentMode,userid,drname,address,drphoneno,totalAmount,totalDiscount,this.image)
               .subscribe((response)=>{
                   if(response['status']=='success')
                   {
@@ -101,10 +100,7 @@ export class UserOrdersComponent implements OnInit {
 
     onSelectImage(event)
      {
-        var img = event.target.files[0]
-        var encImg = img.toString('base64');
-        var s = Buffer.from(encImg, 'base64');
-        this.prescription = s
+        this.image = event.target.files[0]
      }
     ngOnInit() { }
 

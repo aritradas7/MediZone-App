@@ -8,6 +8,7 @@
         <tr>
             <th>No</th>
             <th>Order Number</th>
+            <th>Prescription</th>
             <th>Discount</th>
             <th>Amount</th>
             <th>DR Name</th>
@@ -27,6 +28,8 @@
         <tr *ngFor="let pr of products; let index=index">
             <td>{{index+1}}</td>
             <td>{{pr._id}}</td>
+            <td><a href={{pr.prescription}} target="_blank"><img class="thumbnail" src={{pr.prescription}} alt=""></a></td>
+             
             <td>{{pr.totalDiscount}}</td>
             <td>{{pr.totalAmount}}</td>
             <td>{{pr.drname}}</td>

@@ -39,6 +39,7 @@ router.get('/', (request, response) => {
 
 router.post('/', upload.single('image'), (request, response) => {
     const { name, price, discount, priceWithDiscount, doseInMG, mgfdate, expiredate, description, image, categoryid } = request.body
+    console.log(request.file)
     var file = request.file.originalname
     
     file = "http://localhost:4000/images/"+file

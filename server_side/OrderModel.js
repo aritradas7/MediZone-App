@@ -13,7 +13,7 @@ var orderSchema = new mongoose.Schema({
     drphoneno: String,
     totalAmount: String,
     totalDiscount: String,
-    prescription: Buffer
+    prescription: String
 });
 
 var cartModel = mongoose.model('order', orderSchema);

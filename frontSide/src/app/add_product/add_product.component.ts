@@ -38,7 +38,7 @@ export class Add_productComponent implements OnInit {
     }
     addProduct()
     {
-
+        
         this.service.addService(this.name,this.price, this.discount, this.priceWithDiscount,
         this.doseInMG,this.mgfdate,this.expiredate,this.description,this.image,this.categoryid
         ).subscribe((response)=>{

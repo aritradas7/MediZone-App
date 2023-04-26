@@ -4,9 +4,21 @@ const OrderDetailModel = require('./OrderDetailModel')
 const db = require('./db')
 const utils = require('./utils')
 const express = require('express')
-    //const multer = require('multer')
+const multer = require('multer')
 
 const router = express.Router()
+
+const upload = multer({ 
+    storage: multer.diskStorage({
+        destination: (req, file, callback) => {
+            let path = "images";
+            callback(null,path);
+        },
+        filename: (req,file,callback) => {
+            callback(null,file.originalname);
+        }
+    })
+});
 
 // to insert details of adding to cart product
 router.post('/cart', (request, response) => {
@@ -99,9 +111,15 @@ router.post('/clearCart', (request, response) => {
 })
 
 // to update orderlist (called when user is confired to order)
-router.put('/cart/confirmorder', (request, response) => {
-    const { OrderDate, deliveryDate, PaymentMode, userid, drname, address, drphoneno, totalAmount, totalDiscount, prescription } = request.body
-     
+router.post('/cart/confirmorder', upload.single('image'), (request, response) => {
+    const { OrderDate, deliveryDate, PaymentMode, userid, drname, address, drphoneno, totalAmount, totalDiscount, image } = request.body
+    console.log("error coming here ##############################")
+    console.log(request.file)
+    var file = request.file.originalname
+    
+    
+    file = "http://localhost:4000/images/"+file
+
     var order = new OrderModel({
         OrderDate: OrderDate,
         deliveryDate: deliveryDate,
@@ -112,7 +130,7 @@ router.put('/cart/confirmorder', (request, response) => {
         drphoneno: drphoneno,
         totalAmount: totalAmount,
         totalDiscount: totalDiscount,
-        prescription: prescription
+        prescription: file
     });
     console.log(order)
     var oid = ''

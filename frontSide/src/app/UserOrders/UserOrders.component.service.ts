@@ -25,33 +25,46 @@ export class UserOrdersService {
      }
     UpdateOrders(
         
-        OrderDate:String,
-        deliveryDate:String,
-        PaymentMode: number,
+        OrderDate:string,
+        deliveryDate:string,
+        PaymentMode: string,
         userid:string,
-        drname:String,
-        address:String,
-        drphoneno:String,
-        totalAmount:String,
-        totalDiscount:String,
-        prescription:Buffer
+        drname:string,
+        address:string,
+        drphoneno:string,
+        totalAmount:string,
+        totalDiscount:string,
+        image:any
     )
 
         {
-        const body = {
-            OrderDate:OrderDate,
-            deliveryDate:deliveryDate,
-            PaymentMode:PaymentMode,
-            userid:userid,
-            drname:drname,
-            address:address,
-            drphoneno:drphoneno,
-            totalAmount:totalAmount,
-            totalDiscount:totalDiscount,
-            prescription:prescription
-
-        }
-
-        return this.http.put(this.url1, body)
+            
+            const body = new FormData()
+            body.append('OrderDate', OrderDate)
+            body.append('deliveryDate',deliveryDate)
+            body.append('PaymentMode',PaymentMode)
+            body.append('userid',userid)
+            body.append('drname',drname)
+            body.append('address',address)
+            body.append('drphoneno',drphoneno)
+            body.append('totalAmount',totalAmount)
+            body.append('totalDiscount',totalDiscount)
+            body.append('image',image)
+            
+            // {
+            //     OrderDate:OrderDate,
+            //     deliveryDate:deliveryDate,
+            //     PaymentMode:PaymentMode,
+            //     userid:userid,
+            //     drname:drname,
+            //     address:address,
+            //     drphoneno:drphoneno,
+            //     totalAmount:totalAmount,
+            //     totalDiscount:totalDiscount,
+            //     image:image
+    
+            // }
+        
+        return this.http.post(this.url1, body)
     }
 }
