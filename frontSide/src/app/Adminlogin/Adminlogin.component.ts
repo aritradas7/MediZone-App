@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocationStrategy } from '@angular/common';
 
 
 
@@ -13,7 +14,11 @@ export class AdminloginComponent implements OnInit {
     email1 = ''
     password1 = ''
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, location: LocationStrategy) { 
+        history.pushState(null, null, window.location.href);  
+        location.onPopState(() => {
+        history.pushState(null, null, window.location.href);})
+    }
 
     onlogin()
     {

@@ -2,6 +2,7 @@ import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { MRloginService } from './MRlogin.service';
 import * as toastr from 'toastr';
+import { LocationStrategy } from '@angular/common';
 
 
 @Component({
@@ -19,7 +20,11 @@ export class MRloginComponent {
    
 
     constructor(private router: Router,
-        private service: MRloginService) { }
+        private service: MRloginService,location: LocationStrategy) { 
+            history.pushState(null, null, window.location.href);  
+        location.onPopState(() => {
+        history.pushState(null, null, window.location.href);})
+        }
 
     onlogin()
     {

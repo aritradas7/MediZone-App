@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocationStrategy } from '@angular/common';
 
 @Component({
     selector: 'dashboard',
@@ -9,11 +10,15 @@ import { Router } from '@angular/router';
 
 export class DashboardComponent implements OnInit {
 
-    constructor(private router: Router) { }
+    constructor(private router: Router,location: LocationStrategy) { 
+        
+    }
     
     onlogout()
     {
         this.router.navigate(['/login'])
+        
+        
     }
     ngOnInit() { }
 }
