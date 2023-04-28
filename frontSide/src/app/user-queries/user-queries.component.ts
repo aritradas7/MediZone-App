@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { UserQueriesService } from './user-queries.service';
 
 @Component({
   selector: 'app-user-queries',
@@ -7,8 +8,13 @@ import { Router } from "@angular/router";
   styleUrls: ['./user-queries.component.css']
 })
 export class UserQueriesComponent implements OnInit {
+  service: UserQueriesService
+  queries: any[]
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, qry: UserQueriesService) {
+    this.service = qry
+    this.getAllQueries()
+  }
 
   dashboard()
     {
@@ -23,4 +29,18 @@ export class UserQueriesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getAllQueries() {
+    this.service.getAllQueries().subscribe((response)=>{
+        if(response['status']=='success')
+        {
+            this.queries = response['data']
+        }
+        else
+        {
+            console.log(response['error'])
+            alert('error')
+        }
+    })
+    
+  }
 }

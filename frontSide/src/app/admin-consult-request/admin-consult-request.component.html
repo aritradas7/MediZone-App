@@ -16,9 +16,32 @@
             <th>Email</th>
             <th>City</th>
             <th>Doctor</th>
+            <th>Appointment Date</th>
             <th>Status</th>
+            <th>Action</th>
         </tr>
     </thead>
+    <tbody>
+        <tr *ngFor="let pr of consultReq; let index=index">
+            <td>{{index+1}}</td>
+            <td>{{pr._id}}</td>
+            <td>{{pr.patientname}}</td>
+            <td>{{pr.healthproblem}}</td>
+            <td>{{pr.phoneno}}</td>
+            <td>{{pr.email}}</td>
+            <td>{{pr.city}}</td>
+            <td>{{pr.doctor}}</td>
+            <td>{{pr.appointmentdate| slice:0:10}}</td>
+            <td>{{pr.isapproved}}</td>
+            <td>
+                <button id="acceptbtn" (click)="onapprove(pr._id)" class="btn btn-success"> <i class="glyphicon glyphicon-ok"></i></button>
+                <button id="rejectbtn" (click)="onreject(pr._id)" class="btn btn-danger" style="margin-left: 10px;"> <i class="glyphicon glyphicon-remove"></i></button>
+                
+            </td>
+            
+        </tr>
+
+    </tbody>
 
 
 

@@ -14,15 +14,15 @@ export class AddDRService {
 
      
      addDR(
-        firstname: string,
-        lastname: string,
-        phoneNo: string,
+        name: string,
+        email: string,
+        phoneno: string,
         degree: string ){
         
         const body = {
-            firstname: firstname,
-            lastname:  lastname,
-            phoneNo:   phoneNo,
+            name: name,
+            email:  email,
+            phoneno:   phoneno,
             degree:    degree
         }
 

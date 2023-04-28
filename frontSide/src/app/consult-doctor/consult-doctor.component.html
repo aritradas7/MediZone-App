@@ -60,9 +60,26 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="">Doctor</label>
-            <input [(ngModel)]="doctorname" type="text" class="form-control">
+            <!-- <input [(ngModel)]="doctorname" type="text" class="form-control"> -->
+            <select [(ngModel)]="doctorname" class="form-control">
+                <option *ngFor="let c of doc" [value]="c.name">{{c.name}} [{{c.degree}}]</option>
+            </select>
         </div>
     </div>
+
+</div>
+
+<div class="col-md-3"></div>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="">Appointment Date</label>
+            <input [(ngModel)]="appointmentdate" type="date" class="form-control">
+        </div>
+    </div>
+
 
 </div>
 

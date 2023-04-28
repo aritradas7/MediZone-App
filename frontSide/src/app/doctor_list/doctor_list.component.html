@@ -1,6 +1,6 @@
 <br><br><br>
 
-<button (click)= "dashboard()" class="btn" style="margin-top: 10px;">Dashboard</button>
+<button (click)="dashboard()" class="btn btn-default" style="margin-top: 10px;">Dashboard</button>
 
 <h1>Doctors List</h1>
 
@@ -12,9 +12,10 @@
 <thead>
 <tr>
     <th>Id</th>
-    <th>Firstname</th>
-    <th>Lastname</th>
+    <th>Name</th>
+    <th>Email</th>
     <th>PhoneNo</th>
+    <th>Degree</th>
     <th>Action</th>
 </tr>
 </thead>
@@ -22,11 +23,11 @@
 <tbody>
     <tr *ngFor="let dr of drs;let index = index">
         <td>{{index+1}}</td>
-        <td>{{dr.firstname}}</td>
-        <td>{{dr.lastname}}</td>
-        <td>{{dr.phoneNo}}</td>
-        <td ><button (click)="ondelete(dr.id)" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i></button>
-        <button class="btn btn-warning" style="margin-left: 10px;"> <i class="glyphicon glyphicon-pencil"></i></button></td>
+        <td>{{dr.name}}</td>
+        <td>{{dr.email}}</td>
+        <td>{{dr.phoneno}}</td>
+        <td>{{dr.degree}}</td>
+        <td ><button (click)="ondelete(dr._id)" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i></button></td>
     </tr>
 
 

@@ -1,41 +1,51 @@
 const db = require('./db')
 const utils = require('./utils')
 const express = require('express')
+const DoctorModel = require('./DoctorModel')
 
 
 const router = express.Router()
 
 router.get('/', (request, response) => {
-    const connection = db.mongoose()
-    const statement = `select * from drs`
-    connection.query(statement, (error, data) => {
-        connection.end()
-        response.send(utils.createResult(error, data))
-    })
+    DoctorModel.find({}, function(err, item) {
+        const result = {}
+        console.log(item)
+        response.send(utils.createResult(err, item))
+    });
 })
 
 
 router.post('/', (request, response) => {
-    const { firstname, lastname, phoneNo, degree } = request.body
+    const { name, email, phoneno, degree } = request.body
 
-    const connection = db.mongoose()
-    const statement = `
-    insert into drs (firstname,lastname,phoneNo,degree) values('${firstname}','${lastname}','${phoneNo}','${degree}')`
-    connection.query(statement, (error, data) => {
-        connection.end()
-        response.send(utils.createResult(error, data))
-    })
+    var doc = new DoctorModel({
+        name: name,
+        email: email,
+        phoneno: phoneno,
+        degree: degree
+    });
+
+    doc.save((err, doc) => {
+        if (!err) {
+            console.log('Doctor details successfully!');
+            response.send(utils.createResult(err, doc))
+        } else {
+            console.log('Error during record insertion : ' + err);
+        }
+
+    });
 })
 
 
 router.delete('/:id', (request, response) => {
     const { id } = request.params
-    const connection = db.mongoose()
-    const statement = `delete from drs where id = ${id}`
-    connection.query(statement, (error, data) => {
-        connection.end()
-        response.send(utils.createResult(error, data))
-    })
+    DoctorModel.deleteOne(
+        { _id : id }, 
+        function(err, res) {
+            console.log("deleted")
+            response.send(utils.createResult(err, res))
+        }
+    );
 })
 
 module.exports = router

@@ -14,9 +14,28 @@
             <th>Email</th>
             <th>City</th>
             <th>Doctor</th>
+            <th>Appointment Date</th>
             <th>Status</th>
         </tr>
     </thead>
+    <tbody>
+        <tr *ngFor="let pr of consultReq; let index=index">
+            <td>{{index+1}}</td>
+            <td>{{pr._id}}</td>
+            <td>{{pr.patientname}}</td>
+            <td>{{pr.healthproblem}}</td>
+            <td>{{pr.phoneno}}</td>
+            <td>{{pr.email}}</td>
+            <td>{{pr.city}}</td>
+            <td>{{pr.doctor}}</td>
+            <td>{{pr.appointmentdate| slice:0:10}}</td>
+            <td>{{pr.isapproved}}</td>
+
+            <!-- <td ><button (click)="ondelete(pr.id)" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i></button>
+                </td> -->
+        </tr>
+
+    </tbody>
 
 
 </table>

@@ -15,18 +15,32 @@ export class ConsultDoctorComponent implements OnInit {
   email: string = ''
   city: string = ''
   doctorname: string = ''
+  appointmentdate: Date
+
   service: AddConsultationService
-    
+    doc =[]
   // constructor(private router: Router, consultservice: AddConsultationService,
   //       private catservice:AddConsultationService) {
   //           this.service = consultservice
   //       }
 
   constructor(private router: Router, consult:AddConsultationService, private catservice:AddConsultationService) 
-  { this.service = consult}
+  { this.service = consult
+    this.loadDoctors()
+}
 
   ngOnInit(): void {
   }
+
+  loadDoctors(){
+    this.catservice.getDoctor().subscribe(response =>{
+        if(response['status']=='success')
+        {
+            this.doc = response['data']
+        }
+    })
+}
+
   addConsultation() {
     
     if(this.patientname.length == 0)
@@ -53,11 +67,15 @@ export class ConsultDoctorComponent implements OnInit {
     {
         alert('Enter Doctor Name')
     }
+    else if(!this.appointmentdate)
+    {
+        alert('Enter Appointment Date')
+    }
     else
     {
       
       this.service.addService(this.patientname,this.healthproblem, this.phoneno, this.email,
-      this.city,this.doctorname).subscribe((response)=>{
+      this.city,this.doctorname,this.appointmentdate).subscribe((response)=>{
           if(response['status']=='success')
           {
               alert('Consultation Request Submitted Successfully')

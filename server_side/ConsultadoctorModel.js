@@ -8,7 +8,9 @@ var consultadoctorSchema = new mongoose.Schema({
     phoneno: String,
     email: String,
     city: String,
-    doctor: String
+    doctor: String,
+    appointmentdate: Date,
+    isapproved: String
 });
 
 var ConsultadoctorModel = mongoose.model('consultrequest', consultadoctorSchema);

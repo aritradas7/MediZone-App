@@ -61,7 +61,10 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { SingleUserService } from './user-profile/user.service';
 import { ConsultationRequestsComponent } from './consultation-requests/consultation-requests.component';
 import { AdminConsultRequestComponent } from './admin-consult-request/admin-consult-request.component';
-import { UserQueriesComponent } from './user-queries/user-queries.component'
+import { UserQueriesComponent } from './user-queries/user-queries.component';
+import { UserConsultationRequestsService } from './consultation-requests/consultation-requests.service';
+import { AdminConsultationRequestsService } from './admin-consult-request/admin-consult-request.service';
+import { UserQueriesService } from './user-queries/user-queries.service';
 
 
 
@@ -182,7 +185,10 @@ const routes: Route[] = [
     MRordersListService,
     AddConsultationService,
     ContactUsService,
-    SingleUserService
+    SingleUserService,
+    UserConsultationRequestsService,
+    AdminConsultationRequestsService,
+    UserQueriesService
 
   ],
   bootstrap: [AppComponent]

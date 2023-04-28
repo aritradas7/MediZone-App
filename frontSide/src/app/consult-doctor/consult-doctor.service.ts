@@ -9,6 +9,7 @@ import { ConsultDoctorComponent } from './consult-doctor.component';
 export class AddConsultationService {
     http: HttpClient
     url = 'http://localhost:4000/Contact/consult'   //express port 4000
+    url1 = 'http://localhost:4000/login/dashboard/dr'
 
     constructor(httpClient: HttpClient, private http1:HttpClient) {
         this.http = httpClient
@@ -21,7 +22,8 @@ export class AddConsultationService {
     phoneno: string,
     email: string, 
     city: string ,
-    doctorname: string  
+    doctorname: string,
+    appointmentdate: Date
     )
     {
         
@@ -31,10 +33,16 @@ export class AddConsultationService {
             phoneno:phoneno,
             email:email,
             city:city,
-            doctorname:doctorname
+            doctorname:doctorname,
+            appointmentdate:appointmentdate
         }
 
         return this.http.post(this.url, body)
     } //end of addservive
+
+    getDoctor()
+    {
+        return this.http1.get(this.url1)
+    }
      
 }

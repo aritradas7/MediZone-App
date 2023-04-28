@@ -10,9 +10,9 @@ import { AddDRService } from './adddr.service';
 })
     
 export class Add_drComponent implements OnInit {
-    firstname: string
-    lastname: string
-    phoneNo: string
+    name: string
+    email: string
+    phoneno: string
     degree: string
 
 
@@ -28,11 +28,12 @@ export class Add_drComponent implements OnInit {
     }
     onadd()
     {
-        this.service.addDR(this.firstname,this.lastname,
-            this.phoneNo,this.degree).subscribe((response)=>{
+        this.service.addDR(this.name,this.email,
+            this.phoneno,this.degree).subscribe((response)=>{
                 if(response['status']=='success')
                 {
-                    alert('added DR')
+                    alert('Doctor added successfully')
+                    this.router.navigate(['/login/dashboard/drs'])
                 }
                 else
                 {
