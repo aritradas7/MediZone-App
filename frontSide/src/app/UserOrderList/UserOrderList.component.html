@@ -17,7 +17,7 @@
             <th>Order Date</th>
             <th>Delivery Date</th>
             <th>Full Address</th>
-            <th>Delivery Status</th>
+            <th>Status</th>
 
 
         </tr>
@@ -38,14 +38,7 @@
             <td>{{pr.OrderDate | slice:0:10}}</td>
             <td>{{pr.deliveryDate | slice:0:10}}</td>
             <td>{{pr.address}}</td>
-
-            <td *ngIf="isexpire(pr)">
-                <font color="green"> Done </font>
-            </td>
-
-            <td *ngIf="!isexpire(pr)">
-                <font color="red"> In Progress </font>
-            </td>
+            <td>{{pr.status}}</td>
 
             <!-- <td ><button (click)="ondelete(pr.id)" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i></button>
         </td> -->

@@ -18,6 +18,7 @@
             <th>Delivery Date</th>
             <th>Full Address</th>
             <th>Status</th>
+            <th>Action</th>
 
 
         </tr>
@@ -38,13 +39,13 @@
             <td>{{pr.OrderDate| slice:0:10}}</td>
             <td>{{pr.deliveryDate| slice:0:10}}</td>
             <td>{{pr.address}}</td>
-
-            <td *ngIf="isexpire(pr)">
-                <font color="green"> Done </font>
-            </td>
-
-            <td *ngIf="!isexpire(pr)">
-                <font color="red"> In Progress </font>
+            <td>{{pr.status}}</td>
+            <td> 
+                <div *ngIf="!statAccepted(pr) && !statDispatched(pr) && !statDelivered(pr) " id="acceptbtn"><button (click)="onupdate(pr._id,'Accepted')" class="btn btn-success">Accept</button></div>
+                <div *ngIf="statAccepted(pr) && !statDispatched(pr) && !statDelivered(pr) " id="dispatchbtn"><button (click)="onupdate(pr._id, 'Dispatched')" class="btn btn-success">Dispatch</button></div>
+                <div *ngIf="!statAccepted(pr) && statDispatched(pr) && !statDelivered(pr) " id="deliverbtn"><button (click)="onupdate(pr._id, 'Delivered')" class="btn btn-success">Deliver</button></div>
+                
+            
             </td>
 
             <!-- <td ><button (click)="ondelete(pr.id)" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i></button>

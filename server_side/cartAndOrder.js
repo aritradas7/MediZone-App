@@ -113,8 +113,7 @@ router.post('/clearCart', (request, response) => {
 // to update orderlist (called when user is confired to order)
 router.post('/cart/confirmorder', upload.single('image'), (request, response) => {
     const { OrderDate, deliveryDate, PaymentMode, userid, drname, address, drphoneno, totalAmount, totalDiscount, image } = request.body
-    console.log("error coming here ##############################")
-    console.log(request.file)
+    
     var file = request.file.originalname
     
     
@@ -130,7 +129,8 @@ router.post('/cart/confirmorder', upload.single('image'), (request, response) =>
         drphoneno: drphoneno,
         totalAmount: totalAmount,
         totalDiscount: totalDiscount,
-        prescription: file
+        prescription: file,
+        status: 'Order Placed'
     });
     console.log(order)
     var oid = ''
@@ -184,6 +184,20 @@ router.delete('/orders/:id', (request, response) => {
 //to get list of orders of All mrs
 router.get('/dashboard/orders', (request, response) => {
     OrderModel.find({}, function(err, item) {
+        const result = {}
+        console.log(item)
+        response.send(utils.createResult(err, item))
+    });
+})
+
+//update orderstatus
+router.post('/dashboard/orders/update', (request, response) => {
+    const {id,status} = request.body;
+
+    OrderModel.updateOne(
+        {_id:id},
+        {$set: {status: status}}, 
+        function(err, item) {
         const result = {}
         console.log(item)
         response.send(utils.createResult(err, item))

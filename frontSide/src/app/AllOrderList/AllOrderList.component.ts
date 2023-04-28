@@ -25,6 +25,32 @@ export class AllOrderListComponent  {
 
     }
 
+    onupdate(id: string, status: string) {
+      this.service.updateProduct(id,status).subscribe(response => {
+        if (response['status'] == 'success') {
+          window.location.reload()
+          if(status == 'Accepted'){
+            document.getElementById('acceptbtn').setAttribute("hidden","hidden")
+            document.getElementById('dispatchbtn').removeAttribute("hidden")
+            document.getElementById('deliverbtn').setAttribute("hidden","hidden")
+          }
+          else if(status == 'Dispatched'){
+            document.getElementById('acceptbtn').setAttribute("hidden","hidden")
+            document.getElementById('dispatchbtn').setAttribute("hidden","hidden")
+            document.getElementById('deliverbtn').removeAttribute("hidden")
+          }
+          else if(status == 'Delivered'){
+            document.getElementById('acceptbtn').setAttribute("hidden","hidden")
+            document.getElementById('dispatchbtn').setAttribute("hidden","hidden")
+            document.getElementById('deliverbtn').setAttribute("hidden","hidden")
+          }
+          //this.loadAllProducts()
+        } else {
+          console.log(response['error'])
+        }
+      })
+    }
+
 
     ondelete(id: number) {
       console.log(id)
@@ -66,12 +92,16 @@ export class AllOrderListComponent  {
       })
   }
 
-  isexpire(product) {
-
-    const currentdate= new Date()
-
-    return new Date(product.deliveryDate).valueOf() < new Date(currentdate).valueOf();
+  statAccepted(product) {
+    return product.status == 'Accepted';
   }
+  statDispatched(product) {
+    return product.status == 'Dispatched';
+  }
+  statDelivered(product) {
+    return product.status == 'Delivered';
+  }
+
 
   onlogout()
     {
