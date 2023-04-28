@@ -1,41 +1,39 @@
 <br><br><br>
 <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-              <div class="login">
-          
-  <h1>User login</h1>
-       <div class="form-group">
-       <label for="">Email</label>
-       <input [(ngModel)]="email" type="text" class="form-control">
-        </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="login">
 
-        <div class="form-group">
-        <label for="">Password</label>
-        <input [(ngModel)]="password" type="text" class="form-control">    
-        </div>
+            <h1>User login</h1>
+            <div class="form-group">
+                <label for="">Email</label>
+                <input [(ngModel)]="email" type="text" class="form-control">
+            </div>
 
-        <div class="form-group">
-               <div class="checkbox">
-                   <label>
+            <div class="form-group">
+                <label for="">Password</label>
+                <input [(ngModel)]="password" type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
                      <input [(ngModel)]="rememberme" type="checkbox"> Remember me ?
                    </label>
-                 </div>
-           </div>
+                </div>
+            </div>
 
-        <div class="form-group">
-       <button (click)="onlogin()" class="btn btn-default">Submit</button>  <button style="margin-left: 265px;" routerLink="/MRregister" class="btn btn-default">Register</button>     
+            <div class="form-group">
+                <button (click)="onlogin()" class="btn btn-default">Submit</button>
+                <br><br>
+                <a style="text-decoration:none;" routerLink="/MRlogin/forgot-password">Forgot Password ??</a>
+
+                <button style="margin-left: 330px;" routerLink="/MRregister" class="btn btn-default">Register</button>
+            </div>
         </div>
-   </div>   
-    
-   
-   </div>
-   <div class="col-md-4"></div>
-
-</div> 
 
 
-        
-  
+    </div>
+    <div class="col-md-4"></div>
 
- 
+</div>
