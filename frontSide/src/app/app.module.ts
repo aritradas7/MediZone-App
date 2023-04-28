@@ -65,6 +65,7 @@ import { UserQueriesComponent } from './user-queries/user-queries.component';
 import { UserConsultationRequestsService } from './consultation-requests/consultation-requests.service';
 import { AdminConsultationRequestsService } from './admin-consult-request/admin-consult-request.service';
 import { UserQueriesService } from './user-queries/user-queries.service';
+import { EmailService } from './email.service';
 
 
 
@@ -188,7 +189,8 @@ const routes: Route[] = [
     SingleUserService,
     UserConsultationRequestsService,
     AdminConsultationRequestsService,
-    UserQueriesService
+    UserQueriesService,
+    EmailService
 
   ],
   bootstrap: [AppComponent]
