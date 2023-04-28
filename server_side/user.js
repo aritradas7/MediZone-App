@@ -27,6 +27,8 @@ router.put('/', (req, res) => {
     });
 });
 
+
+
 router.post('/', (request, response) => {
     const { username, firstname, lastname, joindate, phoneno, email, password } = request.body
 

@@ -16,6 +16,17 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/:email', function(req, res, next) {
+    const { email } = req.params
+
+    userModel.find({email:email}, function(err, item) {
+        console.log('emailmodel')
+        const result = {}
+        console.log(item)
+        res.send(utils.createResult(err, item))
+    });
+});
+
 router.put('/', (req, res) => {
     const { userid } = req.body
     userModel.find({_id:userid}, function(err, item) {

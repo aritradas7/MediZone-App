@@ -65,9 +65,8 @@ import { UserQueriesComponent } from './user-queries/user-queries.component';
 import { UserConsultationRequestsService } from './consultation-requests/consultation-requests.service';
 import { AdminConsultationRequestsService } from './admin-consult-request/admin-consult-request.service';
 import { UserQueriesService } from './user-queries/user-queries.service';
-import { EmailService } from './email.service';
+import { UserEmailService } from './forgot-password/forgot-password.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 
@@ -116,8 +115,7 @@ const routes: Route[] = [
   { path: 'MRlogin/consult-doctor', component: ConsultDoctorComponent},
   { path: 'MRlogin/about-us', component: AboutUsComponent},
   { path: 'MRlogin/consultation-request', component: ConsultationRequestsComponent},
-  { path: 'MRlogin/forgot-password', component: ForgotPasswordComponent},
-  { path: 'MRlogin/reset-password', component: ResetPasswordComponent}
+  { path: 'MRlogin/forgot-password', component: ForgotPasswordComponent}
 
 ]
 
@@ -156,10 +154,9 @@ const routes: Route[] = [
     ConsultationRequestsComponent,
     AdminConsultRequestComponent,
     UserQueriesComponent,
-    ForgotPasswordComponent,
-    ResetPasswordComponent
-
+    ForgotPasswordComponent
   ],
+
   imports: [
     BrowserModule,
     FormsModule,
@@ -196,7 +193,7 @@ const routes: Route[] = [
     UserConsultationRequestsService,
     AdminConsultationRequestsService,
     UserQueriesService,
-    EmailService
+    UserEmailService
 
   ],
   bootstrap: [AppComponent]

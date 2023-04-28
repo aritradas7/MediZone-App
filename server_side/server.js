@@ -10,6 +10,7 @@ const routeCategoryAndSearch = require('./categoryAndSearch')
 const routeCartAndOrders = require('./cartAndOrder')
 const routeContact = require('./contact')
 const routeProfile = require('./profile')
+const routeEmail = require('./userEmail')
 const app = express()
 
 
@@ -33,6 +34,7 @@ app.use('/MRlogin',routeCategoryAndSearch)
 app.use('/MRlogin',routeCartAndOrders)
 app.use('/Contact',routeContact)
 app.use('/profile',routeProfile)
+app.use('/sendemail',routeEmail)
 // app.use(express.static('images'))
 app.use(express.static('public'));
 app.use('/images', express.static('images'));

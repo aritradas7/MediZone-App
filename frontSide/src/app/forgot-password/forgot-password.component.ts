@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserEmailService } from './forgot-password.service';
 
 
 @Component({
@@ -9,12 +10,22 @@ import { Router } from '@angular/router';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  service: UserEmailService
+  email: string
+
+
+  constructor(private router: Router, eml: UserEmailService) { 
+    this.service = eml
+  }
 
   onconfirm()
-    {
-            this.router.navigate(['/MRlogin/reset-password'])
-    }
+  {
+    this.service.SendEmail(this.email)
+  }
+
+  onvalidate(){
+    this.service.ValidateUser(this.email)
+  }
 
   ngOnInit(): void {
   }
