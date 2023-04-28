@@ -65,6 +65,8 @@ import { UserQueriesComponent } from './user-queries/user-queries.component';
 import { UserConsultationRequestsService } from './consultation-requests/consultation-requests.service';
 import { AdminConsultationRequestsService } from './admin-consult-request/admin-consult-request.service';
 import { UserQueriesService } from './user-queries/user-queries.service';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 
@@ -112,7 +114,9 @@ const routes: Route[] = [
   { path: 'MRlogin/contact_us', component: ContactUsComponent},
   { path: 'MRlogin/consult-doctor', component: ConsultDoctorComponent},
   { path: 'MRlogin/about-us', component: AboutUsComponent},
-  { path: 'MRlogin/consultation-request', component: ConsultationRequestsComponent}
+  { path: 'MRlogin/consultation-request', component: ConsultationRequestsComponent},
+  { path: 'MRlogin/forgot-password', component: ForgotPasswordComponent},
+  { path: 'MRlogin/reset-password', component: ResetPasswordComponent}
 
 ]
 
@@ -150,7 +154,9 @@ const routes: Route[] = [
     AboutUsComponent,
     ConsultationRequestsComponent,
     AdminConsultRequestComponent,
-    UserQueriesComponent
+    UserQueriesComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
 
   ],
   imports: [
