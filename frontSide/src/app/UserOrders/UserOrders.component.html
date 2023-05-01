@@ -1,6 +1,46 @@
 <br>
 <br><br>
 
+<div class="row" id="qr" hidden>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h1>Payment</h1>
+        <div id = "codeqr">
+            <div class="form-group">
+                <label for="">Please scan the below QR for payment</label>
+            </div>
+            <div>
+                <ngx-qrcode
+                    [elementType]="elementType"
+                    [errorCorrectionLevel]="correctionLevel"
+                    [value]="value"
+                    cssClass="bshadow">
+                </ngx-qrcode>
+            </div>
+        </div>
+        <br>
+        <div id="pmntdn"><button (click)="onSuccessfulPayment()" class="btn btn-success">Payment Done</button></div>
+        
+    </div>
+</div>
+
+<div class="row" id = "upiref" hidden>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div>
+            <h1>Payment</h1>
+            <div class="form-group">
+                <label for="">Please enter payment ref number</label>
+                <input [(ngModel)]="payref" type="text" class="form-control">
+            </div>
+        </div>
+    
+        <br>
+        <div id="cmpltord" ><button (click)="onCompleteOrder()" class="btn btn-success">Complete Order</button></div>
+    </div>
+</div>
+
+<div id="dlvinst">
 <h1>Delivery Information </h1>
 
 <div class="col-md-3"></div>
@@ -29,11 +69,11 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="">Payment Mode</label>
-            <select [(ngModel)]="PaymentMode" class="form-control">
-                      <option  [value]= 1 >Cash</option>
-                        <option  [value]= 2 >Cheque</option>
-                      <option  [value]= 3 >Upi</option>
-                  </select>
+            <select (change)="changetext()" [(ngModel)]="PaymentMode" class="form-control" >
+                <option value = "Cash" >Cash</option>
+                <option value= "Cheque" >Cheque</option>
+                <option value = "UPI" >UPI</option>
+            </select>
         </div>
     </div>
 
@@ -92,7 +132,8 @@
 
 <div class="row">
     <div class="col-md-3">
-        <button (click)="onadd()" class="btn btn-success">Confirm Order</button>
+        <button id="paybtn" (click)="onproceedpay()" class="btn btn-success" ></button>
         <a style="margin-left: 10px;" routerLink="/MRlogin/cart" class="btn btn-danger">Cancel</a>
     </div>
+</div>
 </div>

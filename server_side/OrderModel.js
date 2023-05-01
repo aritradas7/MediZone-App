@@ -6,7 +6,7 @@ var orderSchema = new mongoose.Schema({
 
     OrderDate: Date,
     deliveryDate: Date,
-    PaymentMode: Number,
+    PaymentMode: String,
     userid: String,
     drname: String,
     address: String,
@@ -14,7 +14,8 @@ var orderSchema = new mongoose.Schema({
     totalAmount: String,
     totalDiscount: String,
     prescription: String,
-    status: String
+    status: String,
+    paymentid: String
 });
 
 var cartModel = mongoose.model('order', orderSchema);

@@ -31,16 +31,25 @@ export class AllOrderListComponent  {
           window.location.reload()
           if(status == 'Accepted'){
             document.getElementById('acceptbtn').setAttribute("hidden","hidden")
+            document.getElementById('rejectbtn').setAttribute("hidden","hidden")
             document.getElementById('dispatchbtn').removeAttribute("hidden")
+            document.getElementById('deliverbtn').setAttribute("hidden","hidden")
+          }
+          else if(status == 'Rejected'){
+            document.getElementById('acceptbtn').setAttribute("hidden","hidden")
+            document.getElementById('rejectbtn').setAttribute("hidden","hidden")
+            document.getElementById('dispatchbtn').setAttribute("hidden","hidden")
             document.getElementById('deliverbtn').setAttribute("hidden","hidden")
           }
           else if(status == 'Dispatched'){
             document.getElementById('acceptbtn').setAttribute("hidden","hidden")
+            document.getElementById('rejectbtn').setAttribute("hidden","hidden")
             document.getElementById('dispatchbtn').setAttribute("hidden","hidden")
             document.getElementById('deliverbtn').removeAttribute("hidden")
           }
           else if(status == 'Delivered'){
             document.getElementById('acceptbtn').setAttribute("hidden","hidden")
+            document.getElementById('rejectbtn').setAttribute("hidden","hidden")
             document.getElementById('dispatchbtn').setAttribute("hidden","hidden")
             document.getElementById('deliverbtn').setAttribute("hidden","hidden")
           }
@@ -94,6 +103,9 @@ export class AllOrderListComponent  {
 
   statAccepted(product) {
     return product.status == 'Accepted';
+  }
+  statRejected(product) {
+    return product.status == 'Rejected';
   }
   statDispatched(product) {
     return product.status == 'Dispatched';

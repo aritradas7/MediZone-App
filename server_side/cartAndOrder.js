@@ -112,7 +112,7 @@ router.post('/clearCart', (request, response) => {
 
 // to update orderlist (called when user is confired to order)
 router.post('/cart/confirmorder', upload.single('image'), (request, response) => {
-    const { OrderDate, deliveryDate, PaymentMode, userid, drname, address, drphoneno, totalAmount, totalDiscount, image } = request.body
+    const { OrderDate, deliveryDate, PaymentMode, userid, drname, address, drphoneno, totalAmount, totalDiscount, image ,paymentid} = request.body
     
     var file = request.file.originalname
     
@@ -130,7 +130,8 @@ router.post('/cart/confirmorder', upload.single('image'), (request, response) =>
         totalAmount: totalAmount,
         totalDiscount: totalDiscount,
         prescription: file,
-        status: 'Order Placed'
+        status: 'Order Placed',
+        paymentid: paymentid
     });
     console.log(order)
     var oid = ''

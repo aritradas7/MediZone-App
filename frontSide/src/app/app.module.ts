@@ -67,7 +67,7 @@ import { AdminConsultationRequestsService } from './admin-consult-request/admin-
 import { UserQueriesService } from './user-queries/user-queries.service';
 import { UserEmailService } from './forgot-password/forgot-password.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { PaymentComponent } from './payment/payment.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 
 
@@ -116,8 +116,7 @@ const routes: Route[] = [
   { path: 'MRlogin/consult-doctor', component: ConsultDoctorComponent},
   { path: 'MRlogin/about-us', component: AboutUsComponent},
   { path: 'MRlogin/consultation-request', component: ConsultationRequestsComponent},
-  { path: 'MRlogin/forgot-password', component: ForgotPasswordComponent},
-  { path: "MRlogin/payment", component: PaymentComponent}
+  { path: 'MRlogin/forgot-password', component: ForgotPasswordComponent}
 
 ]
 
@@ -156,14 +155,14 @@ const routes: Route[] = [
     ConsultationRequestsComponent,
     AdminConsultRequestComponent,
     UserQueriesComponent,
-    ForgotPasswordComponent,
-    PaymentComponent
+    ForgotPasswordComponent
   ],
 
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    NgxQRCodeModule,
     RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })
   ],
   providers: [

@@ -17,6 +17,7 @@
             <th>Oreder Date</th>
             <th>Delivery Date</th>
             <th>Full Address</th>
+            <th>PaymentID</th>
             <th>Status</th>
             <th>Action</th>
 
@@ -39,11 +40,13 @@
             <td>{{pr.OrderDate| slice:0:10}}</td>
             <td>{{pr.deliveryDate| slice:0:10}}</td>
             <td>{{pr.address}}</td>
+            <td>{{pr.paymentid}}</td>
             <td>{{pr.status}}</td>
             <td> 
-                <div *ngIf="!statAccepted(pr) && !statDispatched(pr) && !statDelivered(pr) " id="acceptbtn"><button (click)="onupdate(pr._id,'Accepted')" class="btn btn-success">Accept</button></div>
-                <div *ngIf="statAccepted(pr) && !statDispatched(pr) && !statDelivered(pr) " id="dispatchbtn"><button (click)="onupdate(pr._id, 'Dispatched')" class="btn btn-success">Dispatch</button></div>
-                <div *ngIf="!statAccepted(pr) && statDispatched(pr) && !statDelivered(pr) " id="deliverbtn"><button (click)="onupdate(pr._id, 'Delivered')" class="btn btn-success">Deliver</button></div>
+                <div *ngIf="!statAccepted(pr) && !statRejected(pr) && !statDispatched(pr) && !statDelivered(pr) " id="acceptbtn"><button (click)="onupdate(pr._id,'Accepted')" class="btn btn-success">Accept</button></div>
+                <div *ngIf="!statAccepted(pr) && !statRejected(pr) && !statDispatched(pr) && !statDelivered(pr) " id="rejectbtn"><button (click)="onupdate(pr._id,'Rejected')" class="btn btn-danger">Reject</button></div>
+                <div *ngIf="statAccepted(pr) && !statRejected(pr) && !statDispatched(pr) && !statDelivered(pr) " id="dispatchbtn"><button (click)="onupdate(pr._id, 'Dispatched')" class="btn btn-success">Dispatch</button></div>
+                <div *ngIf="!statAccepted(pr) && !statRejected(pr) && statDispatched(pr) && !statDelivered(pr) " id="deliverbtn"><button (click)="onupdate(pr._id, 'Delivered')" class="btn btn-success">Deliver</button></div>
                 
             
             </td>

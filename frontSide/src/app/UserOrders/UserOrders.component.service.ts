@@ -34,7 +34,8 @@ export class UserOrdersService {
         drphoneno:string,
         totalAmount:string,
         totalDiscount:string,
-        image:any
+        image:any,
+        paymentid:string
     )
 
         {
@@ -50,6 +51,7 @@ export class UserOrdersService {
             body.append('totalAmount',totalAmount)
             body.append('totalDiscount',totalDiscount)
             body.append('image',image)
+            body.append('paymentid',paymentid)
             
             // {
             //     OrderDate:OrderDate,

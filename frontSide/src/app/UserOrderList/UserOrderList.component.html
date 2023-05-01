@@ -17,6 +17,7 @@
             <th>Order Date</th>
             <th>Delivery Date</th>
             <th>Full Address</th>
+            <th>PaymentID</th>
             <th>Status</th>
 
 
@@ -38,6 +39,7 @@
             <td>{{pr.OrderDate | slice:0:10}}</td>
             <td>{{pr.deliveryDate | slice:0:10}}</td>
             <td>{{pr.address}}</td>
+            <td>{{pr.paymentid}}</td>
             <td>{{pr.status}}</td>
 
             <!-- <td ><button (click)="ondelete(pr.id)" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i></button>
