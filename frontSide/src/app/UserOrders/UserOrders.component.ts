@@ -23,6 +23,8 @@ export class UserOrdersComponent implements OnInit {
     address: string = ''
     image: any
     payref: string =''
+    delmode: string ='standard'
+    totalamount: string
     
     elementType = NgxQrcodeElementTypes.URL;
     correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
@@ -37,8 +39,12 @@ export class UserOrdersComponent implements OnInit {
         }
 
     ngOnInit() { 
-        this.value = 'upi://pay?pa=reekparnasen-1@okhdfcbank&pn=MEDIZONE&cu=INR&am='+localStorage['TotalAmount'];
         document.getElementById("paybtn").innerHTML = "Proceed to Payment"
+        this.totalamount = "₹ "+localStorage['TotalAmount']
+        localStorage['delcharge'] = 0
+        localStorage['AmountWithDelCharge'] = localStorage['TotalAmount']
+        this.value = 'upi://pay?pa=reekparnasen-1@okhdfcbank&pn=MEDIZONE&cu=INR&am='+localStorage['AmountWithDelCharge'];
+                
     }
 
     changetext(){
@@ -47,6 +53,23 @@ export class UserOrdersComponent implements OnInit {
         }
         else{
             document.getElementById("paybtn").innerHTML = "Place Order"
+        }
+    }
+
+    changedelivery(){
+        if (this.delmode == "standard"){
+            localStorage['delcharge'] = 0
+            this.totalamount = "₹ "+localStorage['TotalAmount']
+            localStorage['AmountWithDelCharge'] = localStorage['TotalAmount']
+            this.value = 'upi://pay?pa=reekparnasen-1@okhdfcbank&pn=MEDIZONE&cu=INR&am='+localStorage['AmountWithDelCharge'];
+        
+        }
+        else if (this.delmode == "express"){
+            localStorage['delcharge'] = 25
+            localStorage['AmountWithDelCharge'] = parseFloat(localStorage['TotalAmount'])+parseFloat(localStorage['delcharge'])
+            this.totalamount = "₹ "+localStorage['TotalAmount']+" + ₹ "+localStorage['delcharge']+" = ₹ "+localStorage['AmountWithDelCharge']
+            this.value = 'upi://pay?pa=reekparnasen-1@okhdfcbank&pn=MEDIZONE&cu=INR&am='+localStorage['AmountWithDelCharge'];
+        
         }
     }
 
@@ -108,10 +131,11 @@ export class UserOrdersComponent implements OnInit {
             deliveryDate.setDate( deliveryDate.getDate() + 3 );
             var totalAmount = localStorage['TotalAmount']
             var totalDiscount = localStorage['TotalDiscount']
+            var deliveryCharge = localStorage['delcharge']
                         
             
             this.service.UpdateOrders(OrderDate.toLocaleDateString(),deliveryDate.toLocaleDateString(),
-            this.PaymentMode,userid,drname,address,drphoneno,totalAmount,totalDiscount,this.image,this.payref)
+            this.PaymentMode,userid,drname,address,drphoneno,totalAmount,totalDiscount,this.image,this.payref,deliveryCharge)
             .subscribe((response)=>{
                 if(response['status']=='success')
                 {
@@ -119,6 +143,8 @@ export class UserOrdersComponent implements OnInit {
                     localStorage['TotalAmount'] = 0
                     localStorage['TotalDiscount'] = 0
                     localStorage['Quantity'] = 0
+                    localStorage['delcharge'] = 0
+                    localStorage['AmountWithDelCharge'] = 0
                     this.service.clearCart(userid).subscribe()
                     this.router.navigate(['/MRlogin/cart'])
                 }

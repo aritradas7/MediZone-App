@@ -126,6 +126,24 @@
     </div>
 
 </div>
+<div class="col-md-3"></div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="">Delivery Option</label>
+            <select (change)="changedelivery()" [(ngModel)]="delmode" class="form-control" >
+                <option selected="selected" value = "standard" >Standard Delivery (Free)</option>
+                <option value = "express" >Express Delivery (₹ 25.00)</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="">Total Amount</label>
+            <input [(ngModel)]="totalamount" type="text" class="form-control" disabled="disabled">
+        </div>
+    </div>
+</div>
 
 
 <div class="col-md-3"></div>

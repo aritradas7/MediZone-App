@@ -15,7 +15,8 @@ var orderSchema = new mongoose.Schema({
     totalDiscount: String,
     prescription: String,
     status: String,
-    paymentid: String
+    paymentid: String,
+    deliveryCharge: String
 });
 
 var cartModel = mongoose.model('order', orderSchema);

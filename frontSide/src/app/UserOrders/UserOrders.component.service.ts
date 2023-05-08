@@ -35,7 +35,8 @@ export class UserOrdersService {
         totalAmount:string,
         totalDiscount:string,
         image:any,
-        paymentid:string
+        paymentid:string,
+        deliveryCharge:string
     )
 
         {
@@ -52,6 +53,7 @@ export class UserOrdersService {
             body.append('totalDiscount',totalDiscount)
             body.append('image',image)
             body.append('paymentid',paymentid)
+            body.append('deliveryCharge',deliveryCharge)
             
             // {
             //     OrderDate:OrderDate,
