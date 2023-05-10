@@ -11,24 +11,24 @@ export class UserProfileComponent implements OnInit {
 
   users: any[]
   service: SingleUserService
-  
+
   dateofbirth: string
   phoneno: string
   email: string
   password: string
-  
+
   constructor(private router: Router,userService: SingleUserService){
     this.service = userService;
     this.loadUserDtls();
   }
-  
-  
+
+
   loadUserDtls(){
     this.service.getUser().subscribe((response)=>{
       if(response['status']=='success')
       {
           this.users = response['data']
-          this.dateofbirth = this.users[0].joindate
+          this.dateofbirth = this.users[0].dob
           this.phoneno = this.users[0].phoneno
           this.email = this.users[0].email
           this.password = this.users[0].password
@@ -37,7 +37,7 @@ export class UserProfileComponent implements OnInit {
           alert('error')
           console.log(response['error'])
       }
-    }) 
+    })
   }
   editUser(){
     document.getElementById("edit").setAttribute("hidden", "hidden")
@@ -83,8 +83,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-    
+
+
   }
 
 }

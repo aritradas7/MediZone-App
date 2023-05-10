@@ -18,8 +18,8 @@ router.get('/', function(req, res, next) {
 router.put('/', (req, res) => {
     const { userid } = req.body
 
-    userModel.find({_id:userid}, function(err, item) {
-        
+    userModel.find({ _id: userid }, function(err, item) {
+
         console.log('usermodelsingle')
         const result = {}
         console.log(item)
@@ -30,13 +30,13 @@ router.put('/', (req, res) => {
 
 
 router.post('/', (request, response) => {
-    const { username, firstname, lastname, joindate, phoneno, email, password } = request.body
+    const { username, firstname, lastname, dob, phoneno, email, password } = request.body
 
     var userDetails = new userModel({
         username: username,
         firstname: firstname,
         lastname: lastname,
-        joindate: joindate,
+        dob: dob,
         phoneno: phoneno,
         email: email,
         password: password,
