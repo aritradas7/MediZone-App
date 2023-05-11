@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { MRloginService } from './MRlogin.service';
 import * as toastr from 'toastr';
 import { LocationStrategy } from '@angular/common';
-
+import { Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'MR-login',
@@ -13,11 +14,12 @@ import { LocationStrategy } from '@angular/common';
 
 export class MRloginComponent {
     email = ''
-    password = ''
+    // email:string = ''
+    // password = ''
+    password: string = '';
     rememberme = false
    // isLoggedIn = false
-
-
+    showPassword: boolean = false;
 
 
     constructor(private router: Router,
@@ -68,6 +70,11 @@ export class MRloginComponent {
         }
 
     }
+
+    togglePassword() {
+      this.showPassword = !this.showPassword;
+    }
+
 
 
 }

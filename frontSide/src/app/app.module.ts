@@ -68,8 +68,7 @@ import { UserQueriesService } from './user-queries/user-queries.service';
 import { UserEmailService } from './forgot-password/forgot-password.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
-
-
+import { FormControl } from '@angular/forms';
 
 const routes: Route[] = [
 

@@ -7,33 +7,33 @@
             <h1>User login</h1>
             <div class="form-group">
                 <label for="">Email</label>
-                <input [(ngModel)]="email" type="text" class="form-control">
+                <input [(ngModel)]="email" type="email" name="email" class="form-control">
             </div>
 
             <div class="form-group">
                 <label for="">Password</label>
-                <input [(ngModel)]="password" type="password" class="form-control">
+                <input [(ngModel)]="password" [type]="showPassword ? 'text' : 'password'" class="form-control">
+                <!-- <input {change}="showPassword($event)" type="checkbox" class="form-check-input">Show Password -->
+                <input type="checkbox" (change)="togglePassword()" /> Show password
 
-            </div>
-
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
                      <input [(ngModel)]="rememberme" type="checkbox"> Remember me ?
                    </label>
+                    </div>
                 </div>
+
+                <div class="form-group">
+                    <button (click)="onlogin()" class="btn btn-default">Submit</button>
+                    <button style="margin-left: 200px;" routerLink="/MRregister" class="btn btn-default">Register</button>
+                </div>
+
+                <a style="text-decoration:none;" routerLink="/MRlogin/forgot-password">Forgot Password ??</a>
             </div>
 
-            <div class="form-group">
-                <button (click)="onlogin()" class="btn btn-default">Submit</button>
-                <button style="margin-left: 200px;" routerLink="/MRregister" class="btn btn-default">Register</button>
-            </div>
 
-            <a style="text-decoration:none;" routerLink="/MRlogin/forgot-password">Forgot Password ??</a>
         </div>
-
+        <div class="col-md-4"></div>
 
     </div>
-    <div class="col-md-4"></div>
-
-</div>
