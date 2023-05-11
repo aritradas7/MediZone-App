@@ -13,8 +13,8 @@ import { FormControl } from '@angular/forms';
 })
 
 export class MRloginComponent {
-    email = ''
-    // email:string = ''
+    // email = ''
+    email:string = ''
     // password = ''
     password: string = '';
     rememberme = false
@@ -74,6 +74,8 @@ export class MRloginComponent {
     togglePassword() {
       this.showPassword = !this.showPassword;
     }
+
+
 
 
 

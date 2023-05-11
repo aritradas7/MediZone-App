@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MRRegisterService } from './MRRegister.service';
+import { FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -13,14 +14,14 @@ export class MRRegisterComponent implements OnInit {
     username: string =''
     firstname: string =''
     lastname: string =''
-    joindate: string = '1990/01/01'
+    dob: string = 'YYYY-MM-DD'
     phoneno: string =''
     email: string = ''
     password: string =''
 
     service: MRRegisterService
     constructor(private router: Router,
-        userservice: MRRegisterService ) { 
+        userservice: MRRegisterService ) {
             this.service =  userservice
         }
 
@@ -46,9 +47,9 @@ export class MRRegisterComponent implements OnInit {
         }
         else{
 
-        
 
-        this.service.addUsers(this.username,this.firstname,this.lastname,this.joindate,
+
+        this.service.addUsers(this.username,this.firstname,this.lastname,this.dob,
             this.phoneno,this.email,this.password).subscribe((response)=>{
                 if(response['status']=='success')
                 {
@@ -64,6 +65,12 @@ export class MRRegisterComponent implements OnInit {
 
         }
     }
+
+
+
     ngOnInit() { }
+
+
+
 
 }

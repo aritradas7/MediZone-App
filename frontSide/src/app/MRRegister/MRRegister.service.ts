@@ -12,26 +12,26 @@ export class MRRegisterService {
         this.http = httpClient
      }
 
-     
+
      addUsers( username: string,
         firstname: string,
         lastname: string,
-        joindate: string,
+        dob: string,
         phoneno: string,
         email: string ,
         password: string){
-        
+
         const body = {
             username: username,
             firstname: firstname,
             lastname:  lastname,
-            joindate: joindate,
+            dob: dob,
             phoneno:   phoneno,
             email:    email,
             password: password
         }
 
         return this.http.post(this.url, body)
-    } 
-        
+    }
+
 }
