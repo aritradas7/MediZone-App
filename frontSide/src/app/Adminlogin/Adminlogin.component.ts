@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocationStrategy } from '@angular/common';
-
+import { Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -12,7 +13,8 @@ import { LocationStrategy } from '@angular/common';
 
 export class AdminloginComponent implements OnInit {
     email1 = ''
-    password1 = ''
+    password1: string = '';
+    showPassword: boolean = false;
 
     constructor(private router: Router, location: LocationStrategy) {
         history.pushState(null, null, window.location.href);
@@ -34,6 +36,10 @@ export class AdminloginComponent implements OnInit {
             alert('enter the vaild password')
         }
       }
+    }
+
+    togglePassword() {
+      this.showPassword = !this.showPassword;
     }
 
     ngOnInit() { }
