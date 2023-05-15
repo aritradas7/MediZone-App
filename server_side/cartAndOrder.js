@@ -87,6 +87,18 @@ router.put('/cartEdit', (request, response) => {
     );
 })
 
+router.post('/orderdetails', (request, response) => {
+    const { OrderId } = request.body
+    console.log('orderdtls')
+    console.log(OrderId)
+    
+    OrderModel.findOne({ _id: OrderId }, function(err, item) {
+        const result = {}
+        console.log(item)
+        response.send(utils.createResult(err, item))
+    });
+})
+
 
 // to delete an item of cart
 router.post('/cartDelete', (request, response) => {

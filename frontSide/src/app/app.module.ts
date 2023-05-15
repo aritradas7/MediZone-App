@@ -69,6 +69,9 @@ import { UserEmailService } from './forgot-password/forgot-password.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { FormControl } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrderDetailsService } from './order-details/order-details.service';
 
 const routes: Route[] = [
 
@@ -115,7 +118,8 @@ const routes: Route[] = [
   { path: 'MRlogin/consult-doctor', component: ConsultDoctorComponent},
   { path: 'MRlogin/about-us', component: AboutUsComponent},
   { path: 'MRlogin/consultation-request', component: ConsultationRequestsComponent},
-  { path: 'MRlogin/forgot-password', component: ForgotPasswordComponent}
+  { path: 'MRlogin/forgot-password', component: ForgotPasswordComponent},
+  { path: 'MRlogin/OrderDetails', component: OrderDetailsComponent}
 
 ]
 
@@ -154,7 +158,8 @@ const routes: Route[] = [
     ConsultationRequestsComponent,
     AdminConsultRequestComponent,
     UserQueriesComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    OrderDetailsComponent
   ],
 
   imports: [
@@ -162,7 +167,8 @@ const routes: Route[] = [
     FormsModule,
     HttpClientModule,
     NgxQRCodeModule,
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+    IonicModule.forRoot()
   ],
   providers: [
     UserService,
@@ -194,7 +200,8 @@ const routes: Route[] = [
     UserConsultationRequestsService,
     AdminConsultationRequestsService,
     UserQueriesService,
-    UserEmailService
+    UserEmailService,
+    OrderDetailsService
 
   ],
   bootstrap: [AppComponent]

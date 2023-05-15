@@ -16,12 +16,16 @@ export class UserProfileComponent implements OnInit {
   phoneno: string
   email: string
   password: string
+  showPassword: boolean = false;
 
   constructor(private router: Router,userService: SingleUserService){
     this.service = userService;
     this.loadUserDtls();
   }
 
+  toggleShow() {
+    this.showPassword = !this.showPassword;
+  }
 
   loadUserDtls(){
     this.service.getUser().subscribe((response)=>{
@@ -72,6 +76,7 @@ export class UserProfileComponent implements OnInit {
             document.getElementById("pass").setAttribute("disabled","disabled")
             document.getElementById("save").setAttribute("hidden", "hidden")
             this.router.navigate(['/MRlogin/user-profile'])
+            this.showPassword = false
         }
         else
         {

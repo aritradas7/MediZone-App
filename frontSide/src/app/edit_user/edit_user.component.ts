@@ -14,12 +14,13 @@ export class Edit_userComponent implements OnInit {
   username = ''
   firstname = ''
   lastname = ''
-  joindate = ''
+  dob = ''
   phoneno = ''
   email = ''
   password = ''
   id = 0
   exist = 0;
+  showPassword: boolean = false;
 
     constructor(private movieService: EditUserService,
         private service: EditUserService,
@@ -39,7 +40,7 @@ export class Edit_userComponent implements OnInit {
                         this.username = user[0].username
                         this.firstname = user[0].firstname
                         this.lastname = user[0].lastname
-                        this.joindate = user[0].joindate
+                        this.dob = user[0].dob
                         this.phoneno = user[0].phoneno
                         this.email = user[0].email
                         this.password = user[0].password
@@ -53,10 +54,13 @@ export class Edit_userComponent implements OnInit {
 
     ngOnInit() { }
 
+    toggleShow() {
+      this.showPassword = !this.showPassword;
+    }
 
     onUpdate() {
         this.movieService
-          .edit_movie(this.username, this.firstname, this.lastname, this.joindate, this.phoneno, this.email, this.password, this.id,this.exist)
+          .edit_movie(this.username, this.firstname, this.lastname, this.dob, this.phoneno, this.email, this.password, this.id,this.exist)
           .subscribe(response => {
             if (response['status'] == 'success') {
                 alert('user-updated')

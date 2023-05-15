@@ -18,13 +18,20 @@ export class MRRegisterComponent implements OnInit {
     phoneno: string =''
     email: string = ''
     password: string =''
+    showPassword: boolean = false;
 
     service: MRRegisterService
     constructor(private router: Router,
         userservice: MRRegisterService ) {
             this.service =  userservice
         }
-
+    
+    
+    toggleShow() {
+        this.showPassword = !this.showPassword;
+    }
+    
+    
     onadd()
     {
         if(this.username.length == 0){
@@ -68,7 +75,9 @@ export class MRRegisterComponent implements OnInit {
 
 
 
-    ngOnInit() { }
+    ngOnInit() { 
+        
+    }
 
 
 

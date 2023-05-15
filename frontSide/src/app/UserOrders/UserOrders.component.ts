@@ -139,14 +139,15 @@ export class UserOrdersComponent implements OnInit {
             .subscribe((response)=>{
                 if(response['status']=='success')
                 {
-                    alert('Order Placed Successfully')
+                    alert("Order Placed Successfully")
+                    localStorage['OrderId'] = response['data']._id
                     localStorage['TotalAmount'] = 0
                     localStorage['TotalDiscount'] = 0
                     localStorage['Quantity'] = 0
                     localStorage['delcharge'] = 0
                     localStorage['AmountWithDelCharge'] = 0
                     this.service.clearCart(userid).subscribe()
-                    this.router.navigate(['/MRlogin/cart'])
+                    this.router.navigate(['/MRlogin/OrderDetails'])
                 }
                 else
                 {
