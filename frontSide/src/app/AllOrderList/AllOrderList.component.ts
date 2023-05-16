@@ -25,6 +25,11 @@ export class AllOrderListComponent  {
 
     }
 
+    getInvoice(id: number){
+      localStorage['OrderId'] = id
+      this.router.navigate([]).then(result => {  window.open('/MRlogin/OrderDetails', '_blank'); });
+    }
+
     onupdate(id: string, status: string) {
       this.service.updateProduct(id,status).subscribe(response => {
         if (response['status'] == 'success') {

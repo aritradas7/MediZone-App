@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class OrderDetailsService {
     http: HttpClient
     url = 'http://localhost:4000/MRlogin/orderdetails'   //express port 4000
-    url1 = 'http://localhost:4000/profile'  
+    url1 = 'http://localhost:4000/profile'
     url2 = 'http://localhost:4000/MRlogin/orderitems'
 
     constructor(httpClient: HttpClient) {
@@ -24,7 +24,7 @@ export class OrderDetailsService {
 
     getOrderDetails()
     {
-        localStorage['OrderId'] = '646333a19638ce69ed7c33d0'
+        //localStorage['OrderId'] = '6463a2408d1731f23c51859c'
         var OrderId=localStorage['OrderId']
         const body = {
           OrderId:OrderId

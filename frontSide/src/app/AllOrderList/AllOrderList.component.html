@@ -9,17 +9,15 @@
             <th>No</th>
             <th>Order Number</th>
             <th>Prescription</th>
-            <th>Discount</th>
-            <th>Amount</th>
+            <th>Order Amount</th>
             <th>Delivery Charge</th>
-            <th>DR Name</th>
-            <th>Phone NO</th>
+            <th>Doctor Name</th>
             <th>PayMode</th>
-            <th>Oreder Date</th>
+            <th>Order Date</th>
             <th>Delivery Date</th>
-            <th>Full Address</th>
             <th>PaymentID</th>
             <th>Status</th>
+            <th>Invoice</th>
             <th>Action</th>
 
 
@@ -31,26 +29,27 @@
         <tr *ngFor="let pr of products; let index=index">
             <td>{{index+1}}</td>
             <td>{{pr._id}}</td>
-            <td><a href={{pr.prescription}} target="_blank"><img class="thumbnail" src={{pr.prescription}} alt=""></a></td>
-                
-            <td>{{pr.totalDiscount}}</td>
+            <td>
+                <a href={{pr.prescription}} target="_blank"><img class="thumbnail" src={{pr.prescription}} alt=""></a>
+            </td>
+
             <td>{{pr.totalAmount}}</td>
             <td>{{pr.deliveryCharge}}</td>
             <td>{{pr.drname}}</td>
-            <td>{{pr.drphoneno}}</td>
             <td>{{pr.PaymentMode}}</td>
             <td>{{pr.OrderDate| slice:0:10}}</td>
             <td>{{pr.deliveryDate| slice:0:10}}</td>
-            <td>{{pr.address}}</td>
             <td>{{pr.paymentid}}</td>
             <td>{{pr.status}}</td>
-            <td> 
+            <td><button (click)="getInvoice(pr._id)" class="btn btn-submit"> <i class="glyphicon glyphicon glyphicon-download"></i></button></td>
+
+            <td>
                 <div *ngIf="!statAccepted(pr) && !statRejected(pr) && !statDispatched(pr) && !statDelivered(pr) " id="acceptbtn"><button (click)="onupdate(pr._id,'Accepted')" class="btn btn-success">Accept</button></div>
                 <div *ngIf="!statAccepted(pr) && !statRejected(pr) && !statDispatched(pr) && !statDelivered(pr) " id="rejectbtn"><button (click)="onupdate(pr._id,'Rejected')" class="btn btn-danger">Reject</button></div>
                 <div *ngIf="statAccepted(pr) && !statRejected(pr) && !statDispatched(pr) && !statDelivered(pr) " id="dispatchbtn"><button (click)="onupdate(pr._id, 'Dispatched')" class="btn btn-success">Dispatch</button></div>
                 <div *ngIf="!statAccepted(pr) && !statRejected(pr) && statDispatched(pr) && !statDelivered(pr) " id="deliverbtn"><button (click)="onupdate(pr._id, 'Delivered')" class="btn btn-success">Deliver</button></div>
-                
-            
+
+
             </td>
 
             <!-- <td ><button (click)="ondelete(pr.id)" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i></button>

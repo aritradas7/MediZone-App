@@ -21,9 +21,13 @@ export class UserOrderListComponent  {
         private service : UserOrderListService) {
 
          this.loadAllProducts()
-         
+
     }
- 
+
+    getInvoice(id: number){
+      localStorage['OrderId'] = id
+      this.router.navigate([]).then(result => {  window.open('/MRlogin/OrderDetails', '_blank'); });
+    }
 
     ondelete(id: number) {
       console.log(id)
@@ -45,15 +49,15 @@ export class UserOrderListComponent  {
   loadAllProducts() {
 
     this.date = new Date()
-  
+
     this.mrid = localStorage['userid']
-    
+
     this.service
       .getAllProducts(this.mrid)
       .subscribe(response => {
         if (response['status'] == 'success') {
           this.products = response['data']
-          
+
         } else {
           alert('error')
         }

@@ -9,17 +9,15 @@
             <th>No</th>
             <th>Order Number</th>
             <th>Prescription</th>
-            <th>Discount</th>
-            <th>Amount</th>
+            <th>Order Amount</th>
             <th>Delivery Charge</th>
-            <th>DR Name</th>
-            <th>Phone NO</th>
+            <th>Doctor Name</th>
             <th>Payment Mode</th>
             <th>Order Date</th>
             <th>Delivery Date</th>
-            <th>Full Address</th>
             <th>PaymentID</th>
             <th>Status</th>
+            <th>Invoice</th>
 
 
         </tr>
@@ -30,19 +28,19 @@
         <tr *ngFor="let pr of products; let index=index">
             <td>{{index+1}}</td>
             <td>{{pr._id}}</td>
-            <td><a href={{pr.prescription}} target="_blank"><img class="thumbnail" src={{pr.prescription}} alt=""></a></td>
-             
-            <td>{{pr.totalDiscount}}</td>
+            <td>
+                <a href={{pr.prescription}} target="_blank"><img class="thumbnail" src={{pr.prescription}} alt=""></a>
+            </td>
+
             <td>{{pr.totalAmount}}</td>
             <td>{{pr.deliveryCharge}}</td>
             <td>{{pr.drname}}</td>
-            <td>{{pr.drphoneno}}</td>
             <td>{{pr.PaymentMode}}</td>
             <td>{{pr.OrderDate | slice:0:10}}</td>
             <td>{{pr.deliveryDate | slice:0:10}}</td>
-            <td>{{pr.address}}</td>
             <td>{{pr.paymentid}}</td>
             <td>{{pr.status}}</td>
+            <td><button (click)="getInvoice(pr._id)" class="btn btn-submit"> <i class="glyphicon glyphicon glyphicon-download"></i></button></td>
 
             <!-- <td ><button (click)="ondelete(pr.id)" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i></button>
         </td> -->

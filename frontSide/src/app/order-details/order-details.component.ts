@@ -11,7 +11,7 @@ import html2pdf from 'html2pdf.js';
 export class OrderDetailsComponent implements OnInit {
   service: OrderDetailsService
   orderid: string
-  orderdate: Date
+  orderdate: string
   userid: string
   username: string
   users: any[]
@@ -26,7 +26,7 @@ export class OrderDetailsComponent implements OnInit {
   items: any[]
 
 
-  constructor(private router: Router,orderDtlsService: OrderDetailsService) { 
+  constructor(private router: Router,orderDtlsService: OrderDetailsService) {
     this.service = orderDtlsService;
     this.loadOrderDtls();
     this.loadUserDtls();
@@ -39,7 +39,7 @@ export class OrderDetailsComponent implements OnInit {
       if(response['status']=='success')
       {
           this.users = response['data']
-          this.phoneno = this.users[0].phoneno
+
           this.email = this.users[0].email
           this.username = this.users[0].firstname+" "+this.users[0].lastname
       }
@@ -83,6 +83,7 @@ export class OrderDetailsComponent implements OnInit {
           this.deliverycharge = response['data'].deliveryCharge
           this.orderdate = response['data'].OrderDate
           this.totaldiscount = response['data'].totalDiscount
+          this.phoneno = response['data'].drphoneno
           this.payableamount = parseFloat(this.totalamount) + parseFloat(this.deliverycharge)
           this.loadOrderItems()
           localStorage['OrderId'] = 0
