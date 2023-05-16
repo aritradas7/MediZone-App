@@ -22,7 +22,7 @@ const upload = multer({
 
 // to insert details of adding to cart product
 router.post('/cart', (request, response) => {
-    const { Quantity, totalAmount, totalDiscount, MRid, productID, file } = request.body
+    const { Quantity, totalAmount, totalDiscount, MRid, productID, productname, file } = request.body
 
     CartModel.find({ MRid: MRid, productID: productID }, function(err, item) {
         console.log('Matched Count')
@@ -35,6 +35,7 @@ router.post('/cart', (request, response) => {
                 totalDiscount: totalDiscount,
                 MRid: MRid,
                 productID: productID,
+                productname: productname,
                 flag: 0,
                 file: file
             });
@@ -93,6 +94,18 @@ router.post('/orderdetails', (request, response) => {
     console.log(OrderId)
     
     OrderModel.findOne({ _id: OrderId }, function(err, item) {
+        const result = {}
+        console.log(item)
+        response.send(utils.createResult(err, item))
+    });
+})
+
+router.post('/orderitems', (request, response) => {
+    const { OrderId } = request.body
+    console.log('orderitems')
+    console.log(OrderId)
+    
+    OrderDetailModel.find({ OrderId: OrderId }, function(err, item) {
         const result = {}
         console.log(item)
         response.send(utils.createResult(err, item))
@@ -158,7 +171,8 @@ router.post('/cart/confirmorder', upload.single('image'), (request, response) =>
                     var orderDtls = new OrderDetailModel({
                         OrderId: oid,
                         productID: x.productID,
-                        Quantity: x.quantity,
+                        productname: x.productname,
+                        Quantity: x.Quantity,
                         totalAmount: x.totalAmount,
                         totalDiscount: x.totalDiscount
                     });

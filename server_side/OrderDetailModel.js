@@ -5,6 +5,7 @@ var orderDtlsSchema = new mongoose.Schema({
 
     OrderId: String,
     productID: String,
+    productname: String,
     Quantity: Number,
     totalAmount: String,
     totalDiscount: String

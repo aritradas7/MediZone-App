@@ -17,7 +17,7 @@ export class ProductDetailsService {
     }
 
 
-    postInCart(Quantity:number,totalAmount:number,totalDiscount:number,MRid:string,productID:string,file:string)
+    postInCart(Quantity:number,totalAmount:number,totalDiscount:number,MRid:string,productID:string,productname:string,file:string)
     {
         const body = {
             Quantity:Quantity,
@@ -25,6 +25,7 @@ export class ProductDetailsService {
             totalDiscount:totalDiscount,
             MRid:MRid,
             productID:productID,
+            productname:productname,
             file:file
         }
 

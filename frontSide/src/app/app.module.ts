@@ -69,7 +69,6 @@ import { UserEmailService } from './forgot-password/forgot-password.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { FormControl } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrderDetailsService } from './order-details/order-details.service';
 
@@ -167,8 +166,7 @@ const routes: Route[] = [
     FormsModule,
     HttpClientModule,
     NgxQRCodeModule,
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
-    IonicModule.forRoot()
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })
   ],
   providers: [
     UserService,

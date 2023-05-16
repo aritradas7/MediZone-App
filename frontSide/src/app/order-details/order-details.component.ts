@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderDetailsService } from './order-details.service';
 import { Router } from '@angular/router';
+import html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-order-details',
@@ -21,6 +22,8 @@ export class OrderDetailsComponent implements OnInit {
   paymentid: string
   deliverycharge: string
   totaldiscount: string
+  payableamount: number
+  items: any[]
 
 
   constructor(private router: Router,orderDtlsService: OrderDetailsService) { 
@@ -46,7 +49,29 @@ export class OrderDetailsComponent implements OnInit {
       }
     })
   }
-
+  loadOrderItems(){
+    this.service.getOrderItems().subscribe((response)=>{
+      if(response['status']=='success')
+      {
+          this.items = response['data']
+      }
+      else{
+          alert('error')
+          console.log(response['error'])
+      }
+    })
+  }
+  printHtml(){
+    var makepdf = document.getElementById("printArea");
+    var opt = {
+      margin:       0,
+      filename:     'Medizone_Invoice.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(makepdf).save();
+  }
   loadOrderDtls(){
     this.service.getOrderDetails().subscribe((response)=>{
       if(response['status']=='success')
@@ -58,6 +83,8 @@ export class OrderDetailsComponent implements OnInit {
           this.deliverycharge = response['data'].deliveryCharge
           this.orderdate = response['data'].OrderDate
           this.totaldiscount = response['data'].totalDiscount
+          this.payableamount = parseFloat(this.totalamount) + parseFloat(this.deliverycharge)
+          this.loadOrderItems()
           localStorage['OrderId'] = 0
       }
       else{

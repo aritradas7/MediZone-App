@@ -8,6 +8,7 @@ var cartSchema = new mongoose.Schema({
     totalDiscount: String,
     MRid: String,
     productID: String,
+    productname: String,
     flag: Number,
     file: String
 });

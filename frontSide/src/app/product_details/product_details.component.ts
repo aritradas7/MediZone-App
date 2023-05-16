@@ -17,6 +17,7 @@ export class ProductDetailsComponent implements OnInit {
     totalDiscount: number
     MRid:string
     file:string
+    productname:string
 
     
 
@@ -35,6 +36,7 @@ export class ProductDetailsComponent implements OnInit {
                 {
                     this.product = response['data'][0]
                     this.rate = this.product.priceWithDiscount
+                    this.productname = this.product.name
                     this.temp = this.rate*this.count
                 }
             })
@@ -76,7 +78,7 @@ export class ProductDetailsComponent implements OnInit {
                 this.MRid = localStorage['userid']
                 this.totalDiscount = (this.product.price * this.count) - this.rate
 
-                this.cartService.postInCart(this.count,this.rate,this.totalDiscount,this.MRid,this.id,this.product.file)
+                this.cartService.postInCart(this.count,this.rate,this.totalDiscount,this.MRid,this.id,this.productname,this.product.file)
                .subscribe(response =>{
                 if(response['status'] == 'success'){
                     alert('items added in your cart')
