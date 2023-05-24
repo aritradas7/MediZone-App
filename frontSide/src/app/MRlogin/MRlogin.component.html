@@ -16,14 +16,7 @@
                 <!-- <input {change}="showPassword($event)" type="checkbox" class="form-check-input">Show Password -->
                 <input type="checkbox" (change)="togglePassword()" /> Show password
 
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                     <input [(ngModel)]="rememberme" type="checkbox"> Remember me ?
-                   </label>
-                    </div>
-                </div>
-
+                <br><br>
                 <div class="form-group">
                     <button (click)="onlogin()" class="btn btn-default">Submit</button>
                     <button style="margin-left: 200px;" routerLink="/MRregister" class="btn btn-default">Register</button>

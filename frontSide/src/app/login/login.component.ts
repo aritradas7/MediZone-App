@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { UserService } from './user.service';
 
 
-
 @Component({
     selector: 'login-page',
     templateUrl: './login.component.html',
